@@ -2,8 +2,8 @@
 <Project DefaultTargets="Build">
   <Sdk Name="Microsoft.Build.Sql" Version="0.1.12-preview" />
   <PropertyGroup>
-    <Name>Test database</Name>
-    <ProjectGuid>{56E300C9-130D-4ED7-86EC-67130278D4DD}</ProjectGuid>
+    <Name>Test</Name>
+    <ProjectGuid>{D80CC3E8-4C43-4050-BA77-7846EC172294}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <ModelCollation>1033, CI</ModelCollation>
   </PropertyGroup>
