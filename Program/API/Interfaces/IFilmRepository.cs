@@ -10,6 +10,5 @@ namespace FilmAnmeldelseApi.Interfaces
         ICollection<Film> GetFilmsByGenre(string genre);
         ICollection<Film> GetFilmsByTitle(string title);
         bool FilmExists(int id);
-        
-}
+    }
 }

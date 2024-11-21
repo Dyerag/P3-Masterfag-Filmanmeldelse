@@ -1,10 +1,4 @@
-﻿using WebApplicationApi.Data;
-using WebApplicationApi.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Net.Http;
-using WebApplicationApi.Model;
-
-namespace BlazorApp.Services
+﻿namespace BlazorApp.Services
 {
     public class ImageService
     {

@@ -1,10 +1,5 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.EntityFrameworkCore;
-using System.Net.Http;
-using BlazorApp.Components;
 using BlazorApp.Services;
-using WebApplicationApi.Data;
+using WebApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 

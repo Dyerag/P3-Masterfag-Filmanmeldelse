@@ -9,5 +9,5 @@ public class Skuespiller
     public string Fuldenavn { get; set; } = null!;
 
     //Alt herunder er database relation
-    public virtual ICollection<SkuespillerRolle> SkuespillerRolles { get; set; }
+    public ICollection<SkuespillerRolle> SkuespillerRolles { get; set; }
 }

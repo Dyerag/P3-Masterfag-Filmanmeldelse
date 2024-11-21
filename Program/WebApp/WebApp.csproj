@@ -18,20 +18,24 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.1.23112.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.1.23112.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0-rc.2.24474.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0-rc.2.24474.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-rc.2.24474.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0-rc.2.24474.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+
+
+
+
+
+
+
+
+
+
   </ItemGroup>
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Components\Pages\convertToBase.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\API\FilmAnmeldelseApi.csproj" />
   </ItemGroup>
 
 </Project>
