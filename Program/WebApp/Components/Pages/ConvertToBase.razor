@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using System.IO
+@inject IJSRuntime JSRuntime
+@using System.Diagnostics; 
+
+@page "/ctb"
+
+<div class="container">
+    <h3>Convert File to Base64 CodeLSC</h3>
+    <label for="images" class="drop-container">
+        <span class="drop-title">Drop files here</span>
+        or
+        <InputFile id="images" class="file-input" OnChange="HandleFileSelection"></InputFile>
+    </label>
+
+    @if (!string.IsNullOrEmpty(base64String))
+    {
+        <div>
+            <p>@base64String</p>
+        </div>
+    }
+
+
+</div>
+
+<script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function () {
+            console.log('Text copied to clipboard');
+        }).catch(function (error) {
+            console.error('Failed to copy text:', error);
+        });
+    }
+</script>
+
+
+@code {
+    private string base64String = string.Empty;
+    private const long MaxFileSize = 1024 * 1024 * 15; // Sætter en grænse på 15 MB
+
+    private async Task HandleFileSelection(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null && file.Size <= MaxFileSize)
+        {
+            try
+            {
+                using (var stream = file.OpenReadStream(MaxFileSize))
+                {
+                    var buffer = new byte[file.Size];
+                    await stream.ReadAsync(buffer, 0, buffer.Length);
+                    base64String = Convert.ToBase64String(buffer);
+
+                    // Brug Debug.WriteLine til at skrive output
+                    Debug.WriteLine("Base64 String generated: " + base64String);
+                }
+            }
+            catch (Exception ex)
+            {
+                base64String = "An error occurred: " + ex.Message;
+                Debug.WriteLine(base64String); // Skriv fejlen
+            }
+        }
+        else
+        {
+            base64String = "File size is too large or no file selected.";
+            Debug.WriteLine(base64String);
+        }
+    }
+
+
+
+
+
+    private async Task CopyBase64String()
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", base64String);
+    }
+
+}

@@ -1,0 +1,335 @@
+﻿@using WebApplicationApi.Data
+@using WebApplicationApi.Models
+@using BlazorApp.Services
+@* @inject Imgservices services *@
+@inject ImageService ImageService
+@using WebApplicationApi.Controllers
+@using WebApplicationApi.Model
+
+@page "/"
+
+<PageTitle>Home</PageTitle>
+<div class="home">
+    <nav class="topbar">
+        <div class="nav">
+            <NavLink href="/" class="nav-link home">Hjem</NavLink>
+            <EditForm Model="search" class="search-container">
+                <InputText class="nav-link search" @bind-Value="search"></InputText>
+            </EditForm>
+            <div class="konto">
+                <NavLink href="/Opret" class="nav-link Opret" active-class="active">Opret</NavLink>
+                <NavLink href="/Login" class="nav-link Login" active-class="active">Login</NavLink>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="sidebar">
+        <div class="nav-side">
+            <p>TOP 10 FILM</p>
+            <ul class="liste">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>1</li>
+                <li><a href="/Login">2</a></li>
+                <li><a href="/Login">3</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <nav class="top-movie">
+        <div class="Left">
+
+            @if (randomLeft != null)
+            {
+
+                <div class="content">
+                    <h1>@randomLeft.Titel</h1>
+                    <p>@randomLeft.Synopse</p>
+                    <p class="line">
+                        <span>@randomLeft.Udgivelsesdato</span>
+                        <span>@randomLeft.Gennemsnitsanmeldelse</span>
+                    </p>
+                </div>
+                <img src="@ConvertToImageUrl(randomLeft.Plakat)" alt="Random Right Film Image" />
+            }
+            
+        </div>
+        <div class="Right">
+            @if (randomRight != null )
+            {
+                
+                    <div class="content">
+                        <h1>@randomRight.Titel</h1>
+                        <p>@randomRight.Synopse</p>
+                        <p class="line">
+                            <span>@randomRight.Udgivelsesdato</span>
+                            <span>@randomRight.Gennemsnitsanmeldelse</span>
+                        </p>
+                        
+                    </div>
+                <img src="@ConvertToImageUrl(randomRight.Plakat)" alt="Random Right Film Image" />
+            }
+            
+        </div>
+    </nav>
+
+    <nav class="row">
+        <div>
+            <h1 class="overskrift">Seneste Upload</h1>
+            <ul>
+                @if (latestFilms != null && latestFilms.Any())
+                {
+                    @foreach (var film in latestFilms)
+                    {
+                        <li>
+                            <img src="@ConvertToImageUrl(film.Plakat)" alt="Film Plakat" />
+                            <p>@film.Titel</p>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <p>Ingen film fundet.</p>
+                }
+            </ul>
+        </div>
+    </nav>
+    @* slet *@
+    <nav class="row" hidden>
+        <div>
+            <h1 class="overskrift">hello</h1>
+            <ul>
+                <li><img src="images\Dangal.jfif" alt="Billede 1"><p>Tekst 1</p></li>
+                <li><img src="images\Dangal.jfif" alt="Billede 1"><p>Tekst 1</p></li>
+                <li><img src="images\Dangal.jfif" alt="Billede 1"><p>Tekst 1</p></li>
+                <li><img src="images\Dangal.jfif" alt="Billede 1"><p>Tekst 1</p></li>
+                <li><img src="images\Dangal.jfif" alt="Billede 1"><p>Tekst 1</p></li>
+                <li><img src="images\Dangal.jfif" alt="Billede 1"><p>Tekst 1</p></li>
+                <li><img src="images\Dangal.jfif" alt="Billede 1"><p>Tekst 1</p></li>
+                <li><img src="images\Dangal.jfif" alt="Billede 1"><p>Tekst 1</p></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<style>
+
+    .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 1000;
+        /* background-color: #343434; */
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        width: 100%; /* Strækker navigationen ud over hele topbaren */
+    }
+
+    .konto {
+        margin-left: auto; /* Flytter konto-sektionen helt til højre */
+        display: flex;
+        gap: 10px;
+    }
+
+    .search-container {
+        width: 50vw;
+        position: fixed; /* Gør elementet fast på skærmen */
+        gap: 10px; /* Lidt mellemrum fra toppen */
+        left: 50%;
+        transform: translateX(-50%); /* Flytter elementet horisontalt til midten */
+        justify-items: center;
+        z-index: 1000; /* Sørger for, at det vises øverst, hvis nødvendigt */
+    }
+
+
+    .nav-link.search {
+        padding: 5px;
+        width: 50%;
+        text-align: center;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 60px; /* Undgår overlap med topbaren */
+        left: 0;
+        width: 200px;
+        height: calc(100vh - 60px); /* Fylder hele siden minus topbaren */
+
+        padding-top: 20px;
+        line-height: 2;
+        /* background-color: #242424; */
+    }
+
+    .nav-side {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center indholdet vertikalt */
+        align-items: center; /* Center indholdet horisontalt */
+        height: 100%; /* Fylder hele højden af sidebaren */
+        text-align: center;
+    }
+
+    .liste {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .liste li {
+            margin: 5px 0; /* Afstand mellem hvert element */
+        }
+
+        .liste a {
+            text-decoration: none;
+            color: black; /* Justér farve efter behov */
+        }
+
+    nav.top-movie {
+        display: flex;
+        gap: 20px;
+        padding: 10px 20px;
+        margin-top: 60px; /* Afstand fra topbaren */
+        margin-left: 220px; /* Plads til sidebaren */
+        width: calc(100% - 220px); /* Fylder hele bredden minus sidebaren */
+        height: 100%; /* Fylder 30% af skærmens højde */
+        box-sizing: border-box;
+    }
+
+    .Left, .Right {
+        display: flex;
+        flex: 1;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        align-content:center;
+        height:275px;
+        
+    }
+
+        .Left img, .Right img {
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+            margin-left: auto;
+        }
+
+        .Left p, .Right p {
+            max-width: 80%;
+        }
+
+    .content {
+        
+        font-size:smaller;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .line {
+        display: flex;
+        gap: 20px; /* Giver afstand mellem elementerne */
+        margin: 0; /* Fjerner ekstra margin */
+    }
+
+        .line span {
+            display: inline-block; /* Sørger for, at de optræder inline */
+            
+        }
+
+    .overskrift {
+        font-size: 18.49px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-around;
+        width: calc(100% - 220px); /* Fylder hele bredden minus sidebaren */
+        margin-left: 220px; /* Plads til sidebaren */
+        /* height: 30vh; */ /* Fylder 30% af skærmens højde */
+        /* padding: 10px 0; */
+        box-sizing: border-box;
+    }
+
+        .row div {
+            width: 100%;
+        }
+
+        .row ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            justify-content: space-around;
+            height: 100%;
+        }
+
+        .row li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .row img {
+            /* width: 15vh; /* Justér efter behov for at få bedre layout */
+            /* height: 20vh; */ 
+            width: 150px; /* Justér efter behov for at få bedre layout */
+            height: 200px;
+        }
+
+        .row p {
+            max-width: 150px;
+            margin-top: 5px;
+            text-align: center;
+        }
+</style>
+
+@code {
+
+
+    string search = "";
+
+    private Film randomLeft;
+    private Film randomRight;
+
+
+    private List<Film> latestFilms;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Hent de seneste 8 film ved hjælp af ImageService
+        latestFilms = await ImageService.GetLatestFilmsAsync();
+
+        var randomFilms = await ImageService.GetTwoUniqueRandomFilmsAsync();
+
+        randomLeft = randomFilms.RandomLeftFilm;
+        randomRight = randomFilms.RandomRightFilm;
+
+    }
+
+    // Metode til at konvertere byte-array til Base64-URL for billedvisning
+    private string ConvertToImageUrl(byte[] imageBytes)
+    {
+        return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
+    }
+
+}
