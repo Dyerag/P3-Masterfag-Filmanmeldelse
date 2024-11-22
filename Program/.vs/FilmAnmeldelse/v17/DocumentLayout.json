@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|c:\\users\\dea\\source\\repos\\dyerag\\p3-masterfag-filmanmeldelse\\program\\api\\interfaces\\iratingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|solutionrelative:api\\interfaces\\iratingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|c:\\users\\dea\\source\\repos\\dyerag\\p3-masterfag-filmanmeldelse\\program\\api\\controllers\\filmcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|solutionrelative:api\\controllers\\filmcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|c:\\users\\dea\\source\\repos\\dyerag\\p3-masterfag-filmanmeldelse\\program\\api\\repository\\filmrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|solutionrelative:api\\repository\\filmrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|c:\\users\\dea\\source\\repos\\dyerag\\p3-masterfag-filmanmeldelse\\program\\api\\aid\\automapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|solutionrelative:api\\aid\\automapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|c:\\users\\dea\\source\\repos\\dyerag\\p3-masterfag-filmanmeldelse\\program\\api\\dto\\filmdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|solutionrelative:api\\dto\\filmdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\dea\\source\\repos\\dyerag\\p3-masterfag-filmanmeldelse\\program\\webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|c:\\users\\dea\\source\\repos\\dyerag\\p3-masterfag-filmanmeldelse\\program\\api\\models\\skuespiller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6C30E59-AA5F-41E5-B2DE-92346AB5BBF0}|API\\FilmAnmeldelseApi.csproj|solutionrelative:api\\models\\skuespiller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,47 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FilmController.cs",
-              "DocumentMoniker": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Controllers\\FilmController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\FilmController.cs",
-              "ToolTip": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Controllers\\FilmController.cs",
-              "RelativeToolTip": "API\\Controllers\\FilmController.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAADwvzwAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T07:14:47.85Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FilmDto.cs",
-              "DocumentMoniker": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Dto\\FilmDto.cs",
-              "RelativeDocumentMoniker": "API\\Dto\\FilmDto.cs",
-              "ToolTip": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Dto\\FilmDto.cs",
-              "RelativeToolTip": "API\\Dto\\FilmDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T07:09:46.312Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AutoMapping.cs",
-              "DocumentMoniker": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Aid\\AutoMapping.cs",
-              "RelativeDocumentMoniker": "API\\Aid\\AutoMapping.cs",
-              "ToolTip": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Aid\\AutoMapping.cs",
-              "RelativeToolTip": "API\\Aid\\AutoMapping.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T07:09:21.428Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -82,6 +27,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IRatingRepository.cs",
+              "DocumentMoniker": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Interfaces\\IRatingRepository.cs",
+              "RelativeDocumentMoniker": "API\\Interfaces\\IRatingRepository.cs",
+              "ToolTip": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Interfaces\\IRatingRepository.cs*",
+              "RelativeToolTip": "API\\Interfaces\\IRatingRepository.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T08:53:34.208Z",
+              "EditorCaption": ""
             }
           ]
         }
@@ -107,39 +65,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FilmRepository.cs",
-              "DocumentMoniker": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Repository\\FilmRepository.cs",
-              "RelativeDocumentMoniker": "API\\Repository\\FilmRepository.cs",
-              "ToolTip": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Repository\\FilmRepository.cs",
-              "RelativeToolTip": "API\\Repository\\FilmRepository.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAD4vyYAAABYAAAAAAAAAA==",
+              "Title": "FilmController.cs",
+              "DocumentMoniker": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Controllers\\FilmController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\FilmController.cs",
+              "ToolTip": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Controllers\\FilmController.cs",
+              "RelativeToolTip": "API\\Controllers\\FilmController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAAwDQAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T13:28:02.492Z",
+              "WhenOpened": "2024-11-22T08:52:28.844Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Skuespiller.cs",
-              "DocumentMoniker": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Models\\Skuespiller.cs",
-              "RelativeDocumentMoniker": "API\\Models\\Skuespiller.cs",
-              "ToolTip": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\API\\Models\\Skuespiller.cs",
-              "RelativeToolTip": "API\\Models\\Skuespiller.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T13:26:14.916Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Program.cs",
-              "RelativeDocumentMoniker": "WebApp\\Program.cs",
-              "ToolTip": "C:\\Users\\dea\\source\\repos\\Dyerag\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Program.cs",
-              "RelativeToolTip": "WebApp\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T13:14:15.631Z"
             }
           ]
         }
