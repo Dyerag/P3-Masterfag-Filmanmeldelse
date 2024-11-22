@@ -12,3 +12,4 @@ public class Rolle
     public Film Film { get; set; } = null!;
     public ICollection<SkuespillerRolle> SkuespillerRolles { get; set; }
 }
+//todo make a DTO, interface, repository and controller for Rolle

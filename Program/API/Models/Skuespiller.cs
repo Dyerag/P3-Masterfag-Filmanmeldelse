@@ -11,3 +11,4 @@ public class Skuespiller
     //Alt herunder er database relation
     public ICollection<SkuespillerRolle> SkuespillerRolles { get; set; }
 }
+//todo make a DTO, interface, repository and controller for Skuespiller

@@ -11,3 +11,5 @@ public class Producer
     //Alt herunder er database relation
     public ICollection<FilmProducer> FilmProducers{ get; set; }
 }
+
+//todo make a DTO, interface, repository and controller for Producer

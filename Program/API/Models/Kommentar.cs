@@ -21,3 +21,4 @@ public class Kommentar
     public Anmeldelser Anmeldelser { get; set; } = null!;
     public User Kommentator { get; set; } = null!;
 }
+//todo make a DTO, interface, repository and controller for Kommentar

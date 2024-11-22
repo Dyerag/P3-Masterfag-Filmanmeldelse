@@ -11,3 +11,5 @@ public class Komponist
     //Alt herunder er database relation
     public ICollection<FilmKomponist> FilmKomponists { get; set; }
 }
+
+//todo make a DTO, interface, repository and controller for Komponist

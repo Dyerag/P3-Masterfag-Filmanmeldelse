@@ -16,3 +16,4 @@ public class User
     public ICollection<Anmeldelser> Anmeldelsers { get; set; }
     public ICollection<Kommentar> Kommentars { get; set; }
 }
+//todo make a DTO, interface, repository and controller for User

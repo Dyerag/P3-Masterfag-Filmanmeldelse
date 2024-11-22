@@ -11,3 +11,4 @@ public class Direktør
     //Alt herunder er database relation
     public ICollection<FilmDirektør> FilmDirektørs { get; set; }
 }
+//todo make a DTO, interface, repository and controller for Direktør

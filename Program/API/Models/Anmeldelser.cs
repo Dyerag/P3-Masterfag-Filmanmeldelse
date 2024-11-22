@@ -21,3 +21,4 @@ public class Anmeldelser
     public Film Film { get; set; } = null!;
     public ICollection<Kommentar> Kommentars { get; set; } = [];
 }
+//todo make a DTO, interface, repository and controller for Anmeldelser

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using FilmAnmeldelseApi.Dto;
 using FilmAnmeldelseApi.Interfaces;
-using FilmAnmeldelseApi.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmAnmeldelseApi.Controllers
@@ -11,6 +9,7 @@ namespace FilmAnmeldelseApi.Controllers
     [ApiController]
     public class FilmController : ControllerBase
     {
+        //IFilmRepository er scoped til FilmRepository
         private readonly IFilmRepository _filmRepository;
         private readonly IMapper _mapper;
 
@@ -45,9 +44,8 @@ namespace FilmAnmeldelseApi.Controllers
             return Ok(films);
         }
 
-        //Test if GetFilmByTitle works when no title is found
         [HttpGet("FindTitle/{title}")]
-        public IActionResult GetFilmByTitle(string title)
+        public IActionResult GetFilmsByTitle(string title)
         {
             var films = _mapper.Map<List<FilmDto>>(_filmRepository.GetFilmsByTitle(title));
 
@@ -57,10 +55,8 @@ namespace FilmAnmeldelseApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            //make it then sort by amount of ratings. Currently not setup
-            films.OrderByDescending(f => f.Gennemsnitsanmeldelse);
-
-            return Ok(films);
+            //todo make GetFilmByTitle sort the returned list- in descending order- by average rating followed by total ratings
+            return Ok(films.OrderByDescending(f => f.Gennemsnitsanmeldelse));
         }
 
         [HttpGet("{genre}")]
@@ -69,9 +65,9 @@ namespace FilmAnmeldelseApi.Controllers
             var films = _mapper.Map<List<FilmDto>>(_filmRepository.GetFilmsByGenre(genre));
 
             if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
+                return BadRequest(ModelState);
 
-            return Ok(films);  
+            return Ok(films);
         }
     }
 }
