@@ -12,7 +12,7 @@ namespace FilmAnmeldelseApi.Data
         }
 
         // Scaffolding tilføjede et s til alle DbSet properties, og den standard bliver fulgt i de manuelt skabet DbSet
-        public DbSet<Anmeldelser> Anmeldelsers { get; set; }
+        public DbSet<Anmeldelse> Anmeldelses { get; set; }
 
         public DbSet<Direktør> Direktørs { get; set; }
 
@@ -55,11 +55,11 @@ namespace FilmAnmeldelseApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Anmeldelser>(entity =>
+            modelBuilder.Entity<Anmeldelse>(entity =>
             {
                 entity.HasKey(e => new { e.FilmId, e.AnmelderId }).HasName("PK__Anmeldel__20E4DA6C24B6FAD6");
 
-                entity.ToTable("Anmeldelser");
+                entity.ToTable("Anmeldelse");
 
                 entity.Property(e => e.FilmId).HasColumnName("FilmID");
                 entity.Property(e => e.AnmelderId).HasColumnName("AnmelderID");
@@ -67,12 +67,12 @@ namespace FilmAnmeldelseApi.Data
                 entity.Property(e => e.Begrundelse).HasMaxLength(1000);
                 entity.Property(e => e.Titel).HasMaxLength(42);
 
-                entity.HasOne(d => d.Anmelder).WithMany(p => p.Anmeldelsers)
+                entity.HasOne(d => d.Anmelder).WithMany(p => p.Anmeldelses)
                     .HasForeignKey(d => d.AnmelderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Anmeldels__Anmel__5441852A");
 
-                entity.HasOne(d => d.Film).WithMany(p => p.Anmeldelsers)
+                entity.HasOne(d => d.Film).WithMany(p => p.Anmeldelses)
                     .HasForeignKey(d => d.FilmId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Anmeldels__FilmI__5535A963");
@@ -145,7 +145,7 @@ namespace FilmAnmeldelseApi.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Kommentar__komme__5CD6CB2B");
 
-                entity.HasOne(d => d.Anmeldelser).WithMany(p => p.Kommentars)
+                entity.HasOne(d => d.Anmeldelse).WithMany(p => p.Kommentars)
                     .HasForeignKey(d => new { d.AnmeldelsensAnmelderId, d.AnmeldelsensFilmId })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Kommentar__5BE2A6F2");

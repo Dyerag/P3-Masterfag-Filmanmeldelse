@@ -13,7 +13,7 @@ public class User
     public DateOnly Oprettelsesdato { get; set; }
 
     //Alt herunder er database relation
-    public ICollection<Anmeldelser> Anmeldelsers { get; set; }
+    public ICollection<Anmeldelse> Anmeldelses { get; set; }
     public ICollection<Kommentar> Kommentars { get; set; }
 }
 //todo make a DTO, interface, repository and controller for User

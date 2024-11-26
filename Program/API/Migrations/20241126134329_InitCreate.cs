@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FilmAnmeldelseApi.Migrations
 {
     /// <inheritdoc />
-    public partial class InitCreateAddedModelsOffUnScaffoldedTables : Migration
+    public partial class InitCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -250,7 +250,7 @@ namespace FilmAnmeldelseApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Anmeldelser",
+                name: "Anmeldelse",
                 columns: table => new
                 {
                     FilmID = table.Column<int>(type: "int", nullable: false),
@@ -317,7 +317,7 @@ namespace FilmAnmeldelseApi.Migrations
                     table.ForeignKey(
                         name: "FK__Kommentar__5BE2A6F2",
                         columns: x => new { x.AnmeldelsensAnmelderID, x.AnmeldelsensFilmID },
-                        principalTable: "Anmeldelser",
+                        principalTable: "Anmeldelse",
                         principalColumns: new[] { "FilmID", "AnmelderID" });
                     table.ForeignKey(
                         name: "FK__Kommentar__komme__5CD6CB2B",
@@ -327,8 +327,8 @@ namespace FilmAnmeldelseApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Anmeldelser_AnmelderID",
-                table: "Anmeldelser",
+                name: "IX_Anmeldelse_AnmelderID",
+                table: "Anmeldelse",
                 column: "AnmelderID");
 
             migrationBuilder.CreateIndex(
@@ -424,7 +424,7 @@ namespace FilmAnmeldelseApi.Migrations
                 name: "Producer");
 
             migrationBuilder.DropTable(
-                name: "Anmeldelser");
+                name: "Anmeldelse");
 
             migrationBuilder.DropTable(
                 name: "Skuespiller");

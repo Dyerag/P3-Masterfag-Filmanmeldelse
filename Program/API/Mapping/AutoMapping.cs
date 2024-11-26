@@ -12,6 +12,7 @@ namespace FilmAnmeldelseApi.Aid
         public AutoMapping()
         {
             CreateMap<Film, FilmDto>();
+            CreateMap<Anmeldelse, AnmeldelseDto>();
         }
     }
 }

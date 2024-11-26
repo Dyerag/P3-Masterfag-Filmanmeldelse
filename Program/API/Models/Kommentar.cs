@@ -18,7 +18,7 @@ public class Kommentar
     public DateOnly KommentarDato { get; set; }
 
     //Alt herunder er database relation
-    public Anmeldelser Anmeldelser { get; set; } = null!;
+    public Anmeldelse Anmeldelse { get; set; } = null!;
     public User Kommentator { get; set; } = null!;
 }
 //todo make a DTO, interface, repository and controller for Kommentar

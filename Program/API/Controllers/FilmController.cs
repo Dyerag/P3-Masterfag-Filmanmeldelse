@@ -5,18 +5,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilmAnmeldelseApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class FilmController : ControllerBase
     {
         //IFilmRepository er scoped til FilmRepository
         private readonly IFilmRepository _filmRepository;
         private readonly IMapper _mapper;
+        // IAnmeldelserRepository bruges til at sortere rækkefølgen af film der er søgt gennem titlen
+        private readonly IAnmeldelseRepository _anmeldelseRepository;
 
-        public FilmController(IFilmRepository filmRepository, IMapper mapper)
+        public FilmController(IFilmRepository filmRepository, IMapper mapper, IAnmeldelseRepository anmeldelserRepository)
         {
             _filmRepository = filmRepository;
             _mapper = mapper;
+            _anmeldelseRepository = anmeldelserRepository;
         }
 
         [HttpGet("FindID/{filmId}")]
@@ -55,8 +58,8 @@ namespace FilmAnmeldelseApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            //todo make GetFilmByTitle sort the returned list- in descending order- by average rating followed by total ratings
-            return Ok(films.OrderByDescending(f => f.Gennemsnitsanmeldelse));
+            //todo Test that GetFilmsByTitle returns a list ordered by, in descending order, GennemsnitsAnmeldelse, and then the amount of reviews.
+            return Ok(films.OrderByDescending(f => f.Gennemsnitsanmeldelse).ThenByDescending(f => _anmeldelseRepository.GetFilmAnmeldelser(f.Id).Count));
         }
 
         [HttpGet("{genre}")]
