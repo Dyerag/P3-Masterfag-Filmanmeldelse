@@ -10,5 +10,5 @@ public class Genre
     public string Genre1 { get; set; } = null!;
 
     //Alt herunder er database relation
-    public ICollection<FilmGenre> FilmGenres { get; set; }
+    public ICollection<FilmGenre>? FilmGenres { get; set; }
 }

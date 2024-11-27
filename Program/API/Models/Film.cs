@@ -17,11 +17,11 @@ public class Film
     public decimal Gennemsnitsanmeldelse { get; set; }
 
     //Alt herunder er database relation
-    public ICollection<Anmeldelser> Anmeldelsers { get; set; }
-    public ICollection<Rolle> Rolles { get; set; }
-    public ICollection<FilmDirektør> FilmDirektørs { get; set; }
-    public ICollection<FilmForfatter> FilmForfatters { get; set; }
-    public ICollection<FilmGenre> FilmGenres { get; set; }
-    public ICollection<FilmKomponist> FilmKomponists { get; set; }
-    public ICollection<FilmProducer> FilmProducers { get; set; }
+    public ICollection<Anmeldelser> ?Anmeldelsers { get; set; }
+    public ICollection<Rolle>? Rolles { get; set; }
+    public ICollection<FilmDirektør>? FilmDirektørs { get; set; }
+    public ICollection<FilmForfatter>?  FilmForfatters { get; set; }
+    public ICollection<FilmGenre>? FilmGenres { get; set; }
+    public ICollection<FilmKomponist>? FilmKomponists { get; set; }
+    public ICollection<FilmProducer>? FilmProducers { get; set; }
 }

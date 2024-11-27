@@ -9,5 +9,5 @@ public class Forfatter
     public string Fuldenavn { get; set; } = null!; //null! = Not Nullable
 
     //Alt herunder er database relation
-    public ICollection<FilmForfatter> FilmForfatters { get; set; }
+    public ICollection<FilmForfatter>? FilmForfatters { get; set; }
 }

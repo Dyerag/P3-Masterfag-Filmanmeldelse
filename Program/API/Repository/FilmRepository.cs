@@ -26,7 +26,7 @@ namespace FilmAnmeldelseApi.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Film GetFilm(int id)
+        public Film? GetFilm(int id)
         {
             return _context.Films.Where(f => f.Id == id).FirstOrDefault();
         }
@@ -46,7 +46,7 @@ namespace FilmAnmeldelseApi.Repository
         /// </summary>
         /// <param name="genre"></param>
         /// <returns></returns>
-        public ICollection<Film> GetFilmsByGenre(string genre)
+        public ICollection<Film?> GetFilmsByGenre(string genre)
         {
             return _context.FilmGenres.Where(g => g.Genre1 == genre).Select(f => f.Film).ToList();
         }

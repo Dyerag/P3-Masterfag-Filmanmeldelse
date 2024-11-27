@@ -9,6 +9,6 @@ public class Direktør
     public string Fuldenavn { get; set; } = null!; //null! betyder "Not Nullable" i databasen
 
     //Alt herunder er database relation
-    public ICollection<FilmDirektør> FilmDirektørs { get; set; }
+    public ICollection<FilmDirektør>? FilmDirektørs { get; set; }
 }
 //todo make a DTO, interface, repository and controller for Direktør

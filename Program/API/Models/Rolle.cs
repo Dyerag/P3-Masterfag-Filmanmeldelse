@@ -10,6 +10,6 @@ public class Rolle
     
     //Alt herunder er database relation
     public Film Film { get; set; } = null!;
-    public ICollection<SkuespillerRolle> SkuespillerRolles { get; set; }
+    public ICollection<SkuespillerRolle>? SkuespillerRolles { get; set; }
 }
 //todo make a DTO, interface, repository and controller for Rolle

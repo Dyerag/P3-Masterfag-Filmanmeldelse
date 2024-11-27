@@ -6,7 +6,7 @@
         public int DirektørId { get; set; }
 
         //Alt herunder er database relation
-        public Film Film { get; set; }
-        public Direktør Direktør { get; set; }
+        public Film ?Film { get; set; }
+        public Direktør ?Direktør { get; set; }
     }
 }

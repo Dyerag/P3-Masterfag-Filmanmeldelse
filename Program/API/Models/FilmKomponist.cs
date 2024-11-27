@@ -6,7 +6,7 @@
         public int KomponistId { get; set; }
 
         //Alt herunder er database relation
-        public Film Film { get; set; }
-        public Komponist Komponist { get; set; }
+        public Film? Film { get; set; }
+        public Komponist? Komponist { get; set; }
     }
 }

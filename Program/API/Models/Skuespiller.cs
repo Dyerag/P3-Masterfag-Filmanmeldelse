@@ -9,6 +9,6 @@ public class Skuespiller
     public string Fuldenavn { get; set; } = null!;
 
     //Alt herunder er database relation
-    public ICollection<SkuespillerRolle> SkuespillerRolles { get; set; }
+    public ICollection<SkuespillerRolle>? SkuespillerRolles { get; set; }
 }
 //todo make a DTO, interface, repository and controller for Skuespiller

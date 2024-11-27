@@ -1,4 +1,5 @@
-﻿using FilmAnmeldelseApi.Models;
+﻿using FilmAnmeldelseApi.Dto;
+using FilmAnmeldelseApi.Models;
 
 namespace BlazorApp.Services
 {
@@ -18,10 +19,10 @@ namespace BlazorApp.Services
         //    return images ?? new List<Table>();
         //}
 
-        public async Task<List<Film>> GetLatestFilmsAsync()
+        public async Task<List<FilmDto>> GetLatestFilmsAsync()
         {
-            var films = await _httpClient.GetFromJsonAsync<List<Film>>($"api/Film/RandomFilms/{8}");
-            return films ?? new List<Film>();
+            var films = await _httpClient.GetFromJsonAsync<List<FilmDto>>($"api/Film/RandomFilms/{8}");
+            return films ?? new List<FilmDto>();
         }
 
         //public async Task<Film> GetRandomLeftFilmsAsync()
@@ -55,19 +56,18 @@ namespace BlazorApp.Services
         //    return (randomLeftFilm, randomRightFilm);
         //}
 
-        public async Task<(Film RandomLeftFilm, Film RandomRightFilm)> GetTwoUniqueRandomFilmsAsync()
+        public async Task<Queue<FilmDto>>/*, Film? RandomRightFilm*/ GetTwoUniqueRandomFilmsAsync()
         {
-            
-            var randomFilms = await _httpClient.GetFromJsonAsync<List<Film>>($"api/Film/RandomFilms/{2}");
 
+            //var randomFilms = await _httpClient.GetFromJsonAsync<List<Film>>($"api/Film/RandomFilms/{2}");
+            Queue<FilmDto> randomFilms = new (await _httpClient.GetFromJsonAsync<List<FilmDto>>($"api/Film/RandomFilms/{2}"));
+
+            return randomFilms;
             // Tildel de to film til venstre og højre
-            var randomLeftFilm = randomFilms?[0];
-            var randomRightFilm = randomFilms?[1];
+            //var randomLeftFilm = randomFilms?[0];
+            //var randomRightFilm = randomFilms?[1];
 
-            return (randomLeftFilm, randomRightFilm);
+            //return (randomLeftFilm, randomRightFilm);
         }
-
-
-
     }
 }

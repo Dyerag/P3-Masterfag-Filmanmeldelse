@@ -10,7 +10,7 @@
         public string Genre1 { get; set; } = null!;
 
         //Alt herunder er database relation
-        public Film Film { get; set; }
-        public Genre Genre { get; set; }
+        public Film? Film { get; set; }
+        public Genre? Genre { get; set; }
     }
 }

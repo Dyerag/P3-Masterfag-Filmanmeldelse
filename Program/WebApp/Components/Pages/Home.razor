@@ -1,6 +1,6 @@
 ﻿@using BlazorApp.Services
 @inject ImageService ImageService
-@using FilmAnmeldelseApi.Models
+@using FilmAnmeldelseApi.Dto
 
 @page "/"
 
@@ -44,10 +44,8 @@
 
     <nav class="top-movie">
         <div class="Left">
-
             @if (randomLeft != null)
             {
-
                 <div class="content">
                     <h1>@randomLeft.Titel</h1>
                     <p>@randomLeft.Synopse</p>
@@ -58,7 +56,6 @@
                 </div>
                 <img src="@ConvertToImageUrl(randomLeft.Plakat)" alt="Random Right Film Image" />
             }
-            
         </div>
         <div class="Right">
             @if (randomRight != null )
@@ -92,10 +89,6 @@
                             <p>@film.Titel</p>
                         </li>
                     }
-                }
-                else
-                {
-                    <p>Ingen film fundet.</p>
                 }
             </ul>
         </div>
@@ -304,11 +297,11 @@
 
     string search = "";
 
-    private Film randomLeft;
-    private Film randomRight;
+    private FilmDto? randomLeft;
+    private FilmDto? randomRight;
 
 
-    private List<Film> latestFilms;
+    private List<FilmDto> ?latestFilms;
 
     protected override async Task OnInitializedAsync()
     {
@@ -317,8 +310,8 @@
 
         var randomFilms = await ImageService.GetTwoUniqueRandomFilmsAsync();
 
-        randomLeft = randomFilms.RandomLeftFilm;
-        randomRight = randomFilms.RandomRightFilm;
+        randomLeft = randomFilms.Dequeue();
+        randomRight = randomFilms.Dequeue();
 
     }
 

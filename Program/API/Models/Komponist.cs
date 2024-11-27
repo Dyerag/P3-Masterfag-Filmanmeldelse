@@ -9,7 +9,7 @@ public class Komponist
     public string Fuldenavn { get; set; } = null!;
 
     //Alt herunder er database relation
-    public ICollection<FilmKomponist> FilmKomponists { get; set; }
+    public ICollection<FilmKomponist>? FilmKomponists { get; set; }
 }
 
 //todo make a DTO, interface, repository and controller for Komponist
