@@ -1,4 +1,6 @@
-﻿namespace BlazorApp.Services
+﻿using FilmAnmeldelseApi.Models;
+
+namespace BlazorApp.Services
 {
     public class ImageService
     {
@@ -18,7 +20,7 @@
 
         public async Task<List<Film>> GetLatestFilmsAsync()
         {
-            var films = await _httpClient.GetFromJsonAsync<List<Film>>("api/getfilm");
+            var films = await _httpClient.GetFromJsonAsync<List<Film>>($"api/Film/RandomFilms/{8}");
             return films ?? new List<Film>();
         }
 
@@ -38,19 +40,34 @@
         //    return randomRightFilm;
         //}
 
+        //public async Task<(Film RandomLeftFilm, Film RandomRightFilm)> GetTwoUniqueRandomFilmsAsync()
+        //{
+        //    // Hent begge film samtidigt
+        //    var randomLeftFilm = await _httpClient.GetFromJsonAsync<Film>("api/GetFilm/random/left");
+        //    var randomRightFilm = await _httpClient.GetFromJsonAsync<Film>("api/GetFilm/random/right");
+
+        //    // Hvis de to film er ens, hent en ny højre film
+        //    if (randomLeftFilm != null && randomRightFilm != null && randomLeftFilm.Id == randomRightFilm.Id)
+        //    {
+        //        randomRightFilm = await _httpClient.GetFromJsonAsync<Film>("api/GetFilm/random/right");
+        //    }
+
+        //    return (randomLeftFilm, randomRightFilm);
+        //}
+
         public async Task<(Film RandomLeftFilm, Film RandomRightFilm)> GetTwoUniqueRandomFilmsAsync()
         {
-            // Hent begge film samtidigt
-            var randomLeftFilm = await _httpClient.GetFromJsonAsync<Film>("api/GetFilm/random/left");
-            var randomRightFilm = await _httpClient.GetFromJsonAsync<Film>("api/GetFilm/random/right");
+            
+            var randomFilms = await _httpClient.GetFromJsonAsync<List<Film>>($"api/Film/RandomFilms/{2}");
 
-            // Hvis de to film er ens, hent en ny højre film
-            if (randomLeftFilm != null && randomRightFilm != null && randomLeftFilm.Id == randomRightFilm.Id)
-            {
-                randomRightFilm = await _httpClient.GetFromJsonAsync<Film>("api/GetFilm/random/right");
-            }
+            // Tildel de to film til venstre og højre
+            var randomLeftFilm = randomFilms?[0];
+            var randomRightFilm = randomFilms?[1];
 
             return (randomLeftFilm, randomRightFilm);
         }
+
+
+
     }
 }
