@@ -13,14 +13,14 @@ namespace FilmAnmeldelseApi.Repository
             _context = context;
         }
 
-        public Anmeldelse GetAnmeldelse(int filmId, int anmelderId)
+        public ICollection<Anmeldelse> GetUserAnmeldelser(int id)
         {
-            return _context.Anmeldelses.Where(a => a.FilmId == filmId && a.AnmelderId == anmelderId).FirstOrDefault();
+            return _context.Anmeldelses.Where(a => a.AnmelderId == id).ToList();
         }
 
-        public ICollection<Anmeldelse> GetFilmAnmeldelser(int filmId)
+        public ICollection<Anmeldelse> GetFilmAnmeldelser(int id)
         {
-            return _context.Anmeldelses.Where(a => a.FilmId == filmId).ToList();
+            return _context.Anmeldelses.Where(a => a.FilmId == id).ToList();
         }
     }
 }

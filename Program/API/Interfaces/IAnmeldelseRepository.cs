@@ -6,6 +6,6 @@ namespace FilmAnmeldelseApi.Interfaces
     {
         public ICollection<Anmeldelse> GetFilmAnmeldelser(int filmId);
 
-        public Anmeldelse GetAnmeldelse(int filmId, int anmelderId);
+        public ICollection<Anmeldelse> GetUserAnmeldelser(int anmelderId);
     }
 }

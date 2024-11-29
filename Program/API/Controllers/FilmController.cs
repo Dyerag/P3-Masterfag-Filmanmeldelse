@@ -59,6 +59,7 @@ namespace FilmAnmeldelseApi.Controllers
                 return BadRequest(ModelState);
 
             //todo Test that GetFilmsByTitle returns a list ordered by, in descending order, GennemsnitsAnmeldelse, and then the amount of reviews.
+            // Den returnerede liste er sorteret efter den film med højst gennemsnit først, og derefter antallet af anmeldelser
             return Ok(films.OrderByDescending(f => f.Gennemsnitsanmeldelse).ThenByDescending(f => _anmeldelseRepository.GetFilmAnmeldelser(f.Id).Count));
         }
 
