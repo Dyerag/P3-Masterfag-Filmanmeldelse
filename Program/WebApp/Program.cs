@@ -1,19 +1,10 @@
-using BlazorApp.Services;
+using WebApp.Services;
 using WebApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Tilføj DbContext med en forbindelse til databasen
-//builder.Services.AddDbContext<ImageContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-//);
-
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44352") });
-
-// Registrér ImageService som en tjeneste
-//builder.Services.AddScoped<Imgservices>();
-
-builder.Services.AddScoped<ImageService>();
+builder.Services.AddScoped<FilmService>();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

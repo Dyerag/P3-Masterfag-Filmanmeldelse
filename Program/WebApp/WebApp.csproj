@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Components\Pages\Home.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <UpToDateCheckInput Remove="Components\Pages\Login.razor" />
   </ItemGroup>
 

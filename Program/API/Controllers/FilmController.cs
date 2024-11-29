@@ -40,7 +40,7 @@ namespace FilmAnmeldelseApi.Controllers
 
             if (!ModelState.IsValid)
                 return BadRequest();
-
+            
             return Ok(films);
         }
 
