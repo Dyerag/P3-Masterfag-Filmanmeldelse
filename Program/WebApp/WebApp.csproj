@@ -21,6 +21,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.1.23112.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.1.23112.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
 
 
 

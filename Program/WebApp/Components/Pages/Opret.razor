@@ -1,7 +1,136 @@
-﻿@page "/Opret"
+﻿@* @using WebApp.model *@
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
-<h3>Opret</h3>
+@page "/Opret"
+@using Microsoft.AspNetCore.Http.Extensions
+
+<div class="container">
+    <div class="header">
+        <h1 class="Opret">Opret</h1>
+    </div>
+    
+    <div class="form-group">
+        <input type="text" @bind="brugernavn" placeholder="Brugernavn" class="input-box" />
+        <input type="password" @bind="adgangskode" placeholder="Adgangskode" class="input-box" />
+    </div>
+    <div class="form-group-buttom">
+    <button type="submit" @onclick="RegisterUser" class="btn">Opret</button>
+    <NavLink href="/" class="btn">tilbage</NavLink>
+        @if (!string.IsNullOrEmpty(Message))
+        {
+            <p>@Message</p>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        margin: 0; /* Fjerner margin fra body */
+        display: flex; /* Aktiverer flexbox på body */
+        justify-content: center; /* Centrerer container vandret */
+        align-items: center; /* Centrerer container lodret */
+        height: 100vh; /* Sørger for, at body fylder hele højden af vinduet */
+    }
+
+    .container {
+        border-style: solid;
+        border-color: #000;
+        width: 25vw;
+        height: 25vw;
+        position: relative; /* Tillader placering af elementer relativt til containeren */
+        padding: 10px; /* Giver plads inden i containeren */
+    }
+
+    .header {
+        display: flex; /* Aktiverer flexbox for header */
+        justify-content: center; /* Centrerer teksten vandret */
+    }
+
+    .Opret {
+        margin: 0; /* Fjerner default margin fra h1 */
+    }
+
+    .form-group {
+        display: flex; /* Lægger input-felterne ved siden af hinanden */
+        justify-content: space-between; /* Fordeler pladsen mellem elementerne */
+        width: 100%; /* Sikrer, at input-boksene fylder containerens bredde */
+        gap: 10px; /* Afstand mellem felterne */
+        margin-top: 10%; /* Tilføjer afstand fra toppen til teksten */
+    }
+
+    .input-box {
+        width: 48%; /* Hver input-boks fylder næsten halvdelen af containerens bredde */
+        height: 2rem; /* Højde på input-boksene */
+        padding: 5px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px; /* Runde kanter */
+        box-sizing: border-box;
+    }
+
+        .input-box:focus {
+            outline: none;
+            border-color: #007BFF; /* Blå farve ved fokus */
+        }
+
+    .right {
+        text-align: right; /* Gør teksten i "Brugernavn" input højrejusteret */
+    }
+
+    .left {
+        text-align: left; /* Gør teksten i "Adgangskode" input venstrejusteret */
+    }
+</style>
 
 @code {
+    // private string Username { get; set; } = string.Empty;
+    // private string Password { get; set; } = string.Empty;
+    private string brugernavn { get; set; } = string.Empty;
+    private string adgangskode { get; set; } = string.Empty;
+    private string Message { get; set; } = string.Empty;
 
+
+    private async Task RegisterUser()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(brugernavn) || string.IsNullOrWhiteSpace(adgangskode))
+            {
+                Message = "Brugernavn og adgangskode må ikke være tomme.";
+                Console.WriteLine(Message); // Log fejl
+                return;
+            }
+
+            var userDto = new
+            {
+                brugernavn = brugernavn,
+                adgangskode = adgangskode
+            };
+
+            var response = await Http.PostAsJsonAsync("api/Login/register", userDto);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Message = "Bruger oprettet succesfuldt!";
+                Console.WriteLine(Message); // Log succes
+                brugernavn = string.Empty;
+                adgangskode = string.Empty;
+
+                NavigationManager.NavigateTo("/Login");
+            }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                Message = $"Fejl: {error}";
+                Console.WriteLine(Message); // Log API-fejl
+            }
+        }
+        catch (Exception ex)
+        {
+            Message = $"Fejl: {ex.Message}";
+            Console.WriteLine(Message); // Log exceptions
+        }
+    }
 }

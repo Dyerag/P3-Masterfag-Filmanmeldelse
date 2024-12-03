@@ -1,15 +1,16 @@
 ﻿using FilmAnmeldelseApi.Data;
 using FilmAnmeldelseApi.Interfaces;
-using FilmAnmeldelseApi.Models;
+//using FilmAnmeldelseApi.Models; <- brug den senere
+using WebApp.model;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmAnmeldelseApi.Repository
 {
     public class FilmRepository : IFilmRepository
     {
-        private readonly DataContext _context;
+        private readonly /*DataContext*/ FilmAnmeldelseContext _context;
 
-        public FilmRepository(DataContext context) => _context = context;
+        public FilmRepository(FilmAnmeldelseContext context) => _context = context;
 
         /// <summary>
         /// Tjekker om filmen findes.
@@ -46,10 +47,10 @@ namespace FilmAnmeldelseApi.Repository
         /// </summary>
         /// <param name="genre"></param>
         /// <returns></returns>
-        public ICollection<Film?> GetFilmsByGenre(string genre)
-        {
-            return _context.FilmGenres.Where(g => g.Genre1 == genre).Select(f => f.Film).ToList();
-        }
+        //public ICollection<Film?> GetFilmsByGenre(string genre)
+        //{
+        //    return _context.FilmGenres.Where(g => g.Genre1 == genre).Select(f => f.Film).ToList();
+        //}
 
         /// <summary>
         /// Henter alle film, hvis titel inkludere hvad der søges efter et sted i titlen. Er case insensitiv

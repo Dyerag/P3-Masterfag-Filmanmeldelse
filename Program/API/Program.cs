@@ -1,6 +1,8 @@
 using FilmAnmeldelseApi.Data;
 using FilmAnmeldelseApi.Interfaces;
 using FilmAnmeldelseApi.Repository;
+using WebApp.services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,11 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddDbContext<DataContext>();
+//builder.Services.AddDbContext<DataContext>();  <- brug den senere
+builder.Services.AddDbContext<FilmAnmeldelseContext>();
 builder.Services.AddScoped<IFilmRepository, FilmRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, OpretRepository>();
+
+
 
 var app = builder.Build();
 

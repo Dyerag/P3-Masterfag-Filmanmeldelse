@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FilmAnmeldelseApi.Dto;
-using FilmAnmeldelseApi.Models;
+//using FilmAnmeldelseApi.Models;  <- bug den senere
+using WebApp.model;
 
 namespace FilmAnmeldelseApi.Aid
 {

@@ -78,8 +78,10 @@
                     @foreach (var film in latestFilms)
                     {
                         <li>
+                            <button>
                             <img src="@ConvertToImageUrl(film.Plakat)" alt="Film Plakat" />
                             <p>@film.Titel</p>
+                            </button>
                         </li>
                     }
                 }
@@ -105,13 +107,10 @@
 </div>
 
 @code {
-
-
     string search = "";
 
     private FilmDto? randomLeft;
     private FilmDto? randomRight;
-
 
     private List<FilmDto> ?latestFilms;
 
@@ -124,9 +123,7 @@
 
         randomLeft = randomFilms.Dequeue();
         randomRight = randomFilms.Dequeue();
-
     }
-
     // Metode til at konvertere byte-array til Base64-URL for billedvisning
     private string ConvertToImageUrl(byte[] imageBytes)
     {

@@ -1,10 +1,11 @@
-﻿using FilmAnmeldelseApi.Models;
+﻿//using FilmAnmeldelseApi.Models; < -brug den senere
+using WebApp.model;
 
 namespace FilmAnmeldelseApi.Interfaces
 {
     public interface IRatingRepository
     {
-        public ICollection<Anmeldelser> GetFilmRatings(int filmId);
+        public ICollection<Anmeldelse> GetFilmRatings(int filmId);
 
     }
 }

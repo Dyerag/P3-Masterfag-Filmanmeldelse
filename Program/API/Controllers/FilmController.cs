@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using FilmAnmeldelseApi.Data;
 using FilmAnmeldelseApi.Dto;
 using FilmAnmeldelseApi.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace FilmAnmeldelseApi.Controllers
 {
@@ -40,7 +43,7 @@ namespace FilmAnmeldelseApi.Controllers
 
             if (!ModelState.IsValid)
                 return BadRequest();
-            
+
             return Ok(films);
         }
 
@@ -59,15 +62,15 @@ namespace FilmAnmeldelseApi.Controllers
             return Ok(films.OrderByDescending(f => f.Gennemsnitsanmeldelse));
         }
 
-        [HttpGet("{genre}")]
-        public IActionResult GetFilmsByGenre(string genre)
-        {
-            var films = _mapper.Map<List<FilmDto>>(_filmRepository.GetFilmsByGenre(genre));
+        //[HttpGet("{genre}")]
+        //public IActionResult GetFilmsByGenre(string genre)
+        //{
+        //    var films = _mapper.Map<List<FilmDto>>(_filmRepository.GetFilmsByGenre(genre));
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
 
-            return Ok(films);
-        }
+        //    return Ok(films);
+        //}
     }
 }
