@@ -29,12 +29,12 @@ namespace FilmAnmeldelseApi.Controllers
         }
 
 
-            /// <summary>
-            /// Endpoint til at oprette en ny bruger.
-            /// </summary>
-            /// <param name="dto"></param>
-            /// <returns></returns>
-            [HttpPost("register")]
+        /// <summary>
+        /// Endpoint til at oprette en ny bruger.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] OpretDto dto)
         {
             try
@@ -59,6 +59,33 @@ namespace FilmAnmeldelseApi.Controllers
             }
             catch (Exception ex)
             {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        /// <summary>
+        /// Endpoint til at logge brugeren ind.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto dto)
+        {
+            try
+            {
+                // Valider login-oplysninger via UserService
+                var user = await _userService.LoginAsync(dto.Brugernavn, dto.Adgangskode);
+
+                // Returner succes med brugerdata
+                return Ok(new
+                {
+                    user.Id,
+                    user.Brugernavn
+                });
+            }
+            catch (Exception ex)
+            {
+                // Returner fejlbesked, hvis login mislykkes
                 return BadRequest(new { message = ex.Message });
             }
         }

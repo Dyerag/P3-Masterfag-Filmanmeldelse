@@ -1,4 +1,4 @@
-﻿.topbar {
+﻿/*.topbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -7,31 +7,31 @@
     display: flex;
     align-items: center;
     padding: 0 20px;
-    z-index: 1000;
+    z-index: 1000;*/
     /* background-color: #343434; */
-}
+/*}
 
 .nav {
     display: flex;
     align-items: center;
-    width: 100%; /* Strækker navigationen ud over hele topbaren */
-}
+    width: 100%;*/ /* Strækker navigationen ud over hele topbaren */
+/*}
 
 .konto {
-    margin-left: auto; /* Flytter konto-sektionen helt til højre */
-    display: flex;
+    margin-left: auto;*/ /* Flytter konto-sektionen helt til højre */
+    /*display: flex;
     gap: 10px;
 }
 
 .search-container {
     width: 50vw;
-    position: fixed; /* Gør elementet fast på skærmen */
-    gap: 10px; /* Lidt mellemrum fra toppen */
-    left: 25%;
+    position: fixed;*/ /* Gør elementet fast på skærmen */
+    /*gap: 10px;*/ /* Lidt mellemrum fra toppen */
+    /*left: 25%;*/
     /* transform: translateX(-50%); */ /* Flytter elementet horisontalt til midten */
-    justify-items: center;
-    z-index: 1000; /* Sørger for, at det vises øverst, hvis nødvendigt */
-}
+    /*justify-items: center;
+    z-index: 1000;*/ /* Sørger for, at det vises øverst, hvis nødvendigt */
+/*}
 
 .nav-link.search {
     padding: 5px;
@@ -42,23 +42,23 @@
 
 .sidebar {
     position: fixed;
-    top: 60px; /* Undgår overlap med topbaren */
-    left: 0;
-    width: 200px;
+    top: 60px;*/ /* Undgår overlap med topbaren */
+    /*left: 0;
+    width: 200px;*/
     /* height: calc(100vh - 60px); */ /* Fylder hele siden minus topbaren */
 
-    padding-top: 20px;
-    line-height: 2;
+    /*padding-top: 20px;
+    line-height: 2;*/
     /* background-color: #242424; */
-}
+/*}
 
 .nav-side {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center indholdet vertikalt */
-    align-items: center; /* Center indholdet horisontalt */
+    justify-content: center;*/ /* Center indholdet vertikalt */
+    /*align-items: center;*/ /* Center indholdet horisontalt */
     /* height: 100%; */ /* Fylder hele højden af sidebaren */
-    text-align: center;
+    /*text-align: center;
     transform: translateY(10vh);
 }
 
@@ -69,23 +69,23 @@
 }
 
     .liste li {
-        margin: 5px 0; /* Afstand mellem hvert element */
-    }
+        margin: 5px 0;*/ /* Afstand mellem hvert element */
+    /*}
 
     .liste a {
         text-decoration: none;
-        color: black; /* Justér farve efter behov */
-    }
+        color: black;*/ /* Justér farve efter behov */
+    /*}
 
 nav.top-movie {
     display: flex;
     gap: 20px;
     padding: 10px 20px;
-    margin-top: 60px; /* Afstand fra topbaren */
-    margin-left: 220px; /* Plads til sidebaren */
-    width: calc(100% - 220px); /* Fylder hele bredden minus sidebaren */
-    height: 100%; /* Fylder 30% af skærmens højde */
-    box-sizing: border-box;
+    margin-top: 60px;*/ /* Afstand fra topbaren */
+    /*margin-left: 220px;*/ /* Plads til sidebaren */
+    /*width: calc(100% - 220px);*/ /* Fylder hele bredden minus sidebaren */
+    /*height: 100%;*/ /* Fylder 30% af skærmens højde */
+    /*box-sizing: border-box;
 }
 
 .Left, .Right {
@@ -119,13 +119,13 @@ nav.top-movie {
 
 .line {
     display: flex;
-    gap: 20px; /* Giver afstand mellem elementerne */
-    margin: 0; /* Fjerner ekstra margin */
-}
+    gap: 20px;*/ /* Giver afstand mellem elementerne */
+    /*margin: 0;*/ /* Fjerner ekstra margin */
+/*}
 
     .line span {
-        display: inline-block; /* Sørger for, at de optræder inline */
-    }
+        display: inline-block;*/ /* Sørger for, at de optræder inline */
+    /*}
 
 .overskrift {
     font-size: 18.49px;
@@ -134,11 +134,11 @@ nav.top-movie {
 .row {
     display: flex;
     justify-content: space-around;
-    width: calc(100% - 220px); /* Fylder hele bredden minus sidebaren */
-    margin-left: 220px; /* Plads til sidebaren */
+    width: calc(100% - 220px);*/ /* Fylder hele bredden minus sidebaren */
+    /*margin-left: 220px;*/ /* Plads til sidebaren */
     /* height: 30vh; */ /* Fylder 30% af skærmens højde */
     /* padding: 10px 0; */
-    box-sizing: border-box;
+    /*box-sizing: border-box;
 }
 
     .row div {
@@ -163,11 +163,11 @@ nav.top-movie {
 
     
 
-    .row img {
+    .row img {*/
         /* width: 15vh; /* Justér efter behov for at få bedre layout */
         /* height: 20vh; */
-        width: 150px; /* Justér efter behov for at få bedre layout */
-        height: 200px;
+        /*width: 150px;*/ /* Justér efter behov for at få bedre layout */
+        /*height: 200px;
     }
 
     .row p {
@@ -179,4 +179,4 @@ nav.top-movie {
     .row button {
         border-style:none;
         background: none;
-    }
+    }*/

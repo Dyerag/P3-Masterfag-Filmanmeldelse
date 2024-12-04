@@ -1,7 +1,150 @@
-﻿@page "/login"
+﻿@inject HttpClient Http
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Http.Extensions
 
-<h3>Login</h3>
+@page "/login"
+
+<div class="container">
+
+    <div class="header">
+        <h1 class="Login">Login</h1>
+    </div>
+
+    <div class="form-group">
+        <input type="text" @bind="Brugernavn" placeholder="Brugernavn" class="input-box" disabled="@isDisable" />
+        <input type="password" @bind="Adgangskode" placeholder="Adgangskode" class="input-box" disabled="@isDisable" />
+    </div>
+
+    @if (!string.IsNullOrEmpty(Message))
+    {
+        <p style="color:red" class="error">@Message</p>
+    }
+
+    <div class="form-group-buttom">
+        <button type="submit" @onclick="OnClickLogin" class="btn">Login</button>
+    </div>
+
+    <NavLink href="/Opret" class="opret-link">opret</NavLink>
+    <NavLink href="/" class="opret-link">tilbage</NavLink>
+
+</div>
+
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 300px;
+        height: 400px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .form-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .input-box {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .form-group-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .opret-link {
+        font-size: 0.9rem;
+        text-decoration: underline;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .error{
+        font-size:smaller;
+    }
+</style>
 
 @code {
+    private bool isDisable { get; set; }
+    private string Brugernavn { get; set; } = string.Empty;
+    private string Adgangskode { get; set; } = string.Empty;
+    private string Message { get; set; } = string.Empty;
 
+    private async Task OnClickLogin()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(Brugernavn) || string.IsNullOrWhiteSpace(Adgangskode))
+            {
+                Message = "Brugernavn og adgangskode må ikke være tomme.";
+                return;
+            }
+
+            var loginDto = new
+            {
+                brugernavn = Brugernavn,
+                adgangskode = Adgangskode
+            };
+
+            this.isDisable = true;
+
+            var response = await Http.PostAsJsonAsync("api/Login/login", loginDto);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Message = "Login succesfuldt!";
+                StateHasChanged();
+                await Task.Delay(5000);
+                Navigation.NavigateTo("/"); // Naviger til hovedsiden
+            }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                Message = $"Login fejlede: {error}";
+            }
+        }
+        catch (Exception ex)
+        {
+            Message = $"Fejl: {ex.Message}";
+        }
+    }
 }

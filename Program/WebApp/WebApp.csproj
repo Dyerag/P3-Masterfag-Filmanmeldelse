@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Components\Pages\Login.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\Søge.razor" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\API\FilmAnmeldelseApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Pages\Søge.razor" />
   </ItemGroup>
 
 </Project>

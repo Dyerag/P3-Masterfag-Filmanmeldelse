@@ -16,87 +16,85 @@
 
     <div class="form-group">
 
-        <input type="text" @bind="brugernavn" placeholder="Brugernavn" class="input-box" />
-        <input type="password" @bind="adgangskode" placeholder="Adgangskode" class="input-box" />
+        <input type="text" @bind="brugernavn" placeholder="Brugernavn" class="input-box" disabled="@isDisable" />
+        <input type="password" @bind="adgangskode" placeholder="Adgangskode" class="input-box" disabled="@isDisable" />
 
     </div>
+
+    @if (!string.IsNullOrEmpty(Message))
+    {
+        <p style="color:red">@Message</p>
+    }
 
     <div class="form-group-buttom">
 
         <button type="submit" @onclick="RegisterUser" class="btn">Opret</button>
         <NavLink href="/" class="btn">tilbage</NavLink>
-
-        @if (!string.IsNullOrEmpty(Message))
-        {
-            <p style="color:red">@Message</p>
-        }
-
     </div>
 
 </div>
 
 <style>
     body {
-        margin: 0; /* Fjerner margin fra body */
-        display: flex; /* Aktiverer flexbox på body */
-        justify-content: center; /* Centrerer container vandret */
-        align-items: center; /* Centrerer container lodret */
-        height: 100vh; /* Sørger for, at body fylder hele højden af vinduet */
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
 
     .container {
-        border-style: solid;
-        border-color: #000;
-        width: 25vw;
-        height: 25vw;
-        position: relative; /* Tillader placering af elementer relativt til containeren */
-        padding: 10px; /* Giver plads inden i containeren */
+        width: 400px;
+        height: 300px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        gap: 20px;
     }
 
-    .header {
-        display: flex; /* Aktiverer flexbox for header */
-        justify-content: center; /* Centrerer teksten vandret */
-    }
-
-    .Opret {
-        margin: 0; /* Fjerner default margin fra h1 */
+    .header h1 {
+        margin: 0;
+        font-size: 1.5rem;
     }
 
     .form-group {
-        display: flex; /* Lægger input-felterne ved siden af hinanden */
-        justify-content: space-between; /* Fordeler pladsen mellem elementerne */
-        width: 100%; /* Sikrer, at input-boksene fylder containerens bredde */
-        gap: 10px; /* Afstand mellem felterne */
-        margin-top: 10%; /* Tilføjer afstand fra toppen til teksten */
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
     }
 
     .input-box {
-        width: 48%; /* Hver input-boks fylder næsten halvdelen af containerens bredde */
-        height: 2rem; /* Højde på input-boksene */
-        padding: 5px;
+        width: 48%;
+        padding: 10px;
         font-size: 1rem;
         border: 1px solid #ccc;
-        border-radius: 4px; /* Runde kanter */
-        box-sizing: border-box;
+        border-radius: 5px;
+        text-align: center;
     }
 
-        .input-box:focus {
-            outline: none;
-            border-color: #007BFF; /* Blå farve ved fokus */
-        }
-
-    .right {
-        text-align: right; /* Gør teksten i "Brugernavn" input højrejusteret */
+    .form-group-buttom {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Mindre afstand mellem knapper */
+        width: 100%;
     }
 
-    .left {
-        text-align: left; /* Gør teksten i "Adgangskode" input venstrejusteret */
+    .btn {
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
     }
 </style>
 
 @code {
-    // private string Username { get; set; } = string.Empty;
-    // private string Password { get; set; } = string.Empty;
+    private bool isDisable { get; set; }
     private string brugernavn { get; set; } = string.Empty;
     private string adgangskode { get; set; } = string.Empty;
     private string Message { get; set; } = string.Empty;
@@ -119,15 +117,18 @@
                 adgangskode = adgangskode
             };
 
+            this.isDisable = true;
+
             var response = await Http.PostAsJsonAsync("api/Login/register", userDto);
 
             if (response.IsSuccessStatusCode)
             {
                 Message = "Bruger oprettet succesfuldt!";
                 Console.WriteLine(Message); // Log succes
-                brugernavn = string.Empty;
-                adgangskode = string.Empty;
-
+                brugernavn = brugernavn;
+                adgangskode = adgangskode;
+                StateHasChanged();
+                System.Threading.Thread.Sleep(5000);
                 NavigationManager.NavigateTo("/Login");
             }
             else
