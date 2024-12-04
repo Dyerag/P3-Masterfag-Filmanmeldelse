@@ -2,6 +2,7 @@
 using FilmAnmeldelseApi.Dto;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.model;
+using FilmAnmeldelseApi.Data;
 
 namespace FilmAnmeldelseApi.Controllers
 {
@@ -16,12 +17,24 @@ namespace FilmAnmeldelseApi.Controllers
             _userService = userService;
         }
 
-        /// <summary>
-        /// Endpoint til at oprette en ny bruger.
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        [HttpPost("register")]
+        [HttpGet("User")]
+        public IActionResult GetUser()
+        {
+            using (var context = new FilmAnmeldelseContext())
+            {
+                var users = context.Users.ToList();
+
+                return Ok(users);
+            }
+        }
+
+
+            /// <summary>
+            /// Endpoint til at oprette en ny bruger.
+            /// </summary>
+            /// <param name="dto"></param>
+            /// <returns></returns>
+            [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] OpretDto dto)
         {
             try

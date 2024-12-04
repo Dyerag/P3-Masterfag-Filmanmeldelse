@@ -1,28 +1,38 @@
-﻿@* @using WebApp.model *@
-@inject HttpClient Http
+﻿@inject HttpClient Http
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
-
-@page "/Opret"
+@inherits LayoutComponentBase
 @using Microsoft.AspNetCore.Http.Extensions
 
+@page "/Opret"
+
 <div class="container">
+
     <div class="header">
+
         <h1 class="Opret">Opret</h1>
+
     </div>
-    
+
     <div class="form-group">
+
         <input type="text" @bind="brugernavn" placeholder="Brugernavn" class="input-box" />
         <input type="password" @bind="adgangskode" placeholder="Adgangskode" class="input-box" />
+
     </div>
+
     <div class="form-group-buttom">
-    <button type="submit" @onclick="RegisterUser" class="btn">Opret</button>
-    <NavLink href="/" class="btn">tilbage</NavLink>
+
+        <button type="submit" @onclick="RegisterUser" class="btn">Opret</button>
+        <NavLink href="/" class="btn">tilbage</NavLink>
+
         @if (!string.IsNullOrEmpty(Message))
         {
-            <p>@Message</p>
+            <p style="color:red">@Message</p>
         }
+
     </div>
+
 </div>
 
 <style>
