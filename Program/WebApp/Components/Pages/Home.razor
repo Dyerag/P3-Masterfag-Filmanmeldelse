@@ -1,10 +1,10 @@
-﻿@inherits LayoutComponentBase
+﻿﻿
 
 @page "/"
 
 <PageTitle>Home</PageTitle>
 
-
+@inherits LayoutComponentBase
 <!-- Topbar -->
 <nav class="topbar">
     <div class="nav">
@@ -97,6 +97,7 @@
 
     body {
         margin: 0;
+        padding: 0;
         font-family: Arial, sans-serif;
         display: flex;
         flex-direction: column;
@@ -105,25 +106,29 @@
 
     /* Topbar */
     .topbar {
+        position: fixed;
+        top: 0; /* Sørger for, at topbaren starter helt øverst */
+        left: 0;
+        width: 100%;
+        height: 60px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px;
+        padding: 5px 20px; /* Reduceret padding for at mindske højden */
         border-bottom: 1px solid #ccc;
-        position: relative; /* Tillader absolut placering af søgefeltet */
     }
 
     .nav {
         display: flex;
         align-items: center;
         gap: 20px;
+        flex: 1; /* Gør navigationen fleksibel */
     }
 
-    /* Center søgefeltet */
     .search-container {
-        position: absolute; /* Placer søgefeltet i midten */
-        left: 50%; /* Midter søgefeltet horisontalt */
-        transform: translateX(-50%); /* Juster position */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -137,6 +142,7 @@
         }
 
     .konto {
+        margin-left: auto; /* Flytter konto-sektionen til højre */
         display: flex;
         gap: 10px;
     }
@@ -159,6 +165,7 @@
         position: fixed;
         top: 50px; /* Under topbar */
         left: 0;
+        text-align: center;
     }
 
     .nav-side p {
@@ -181,31 +188,73 @@
         display: flex;
         justify-content: space-around;
         margin-left: 220px; /* Afstand fra sidebar */
-        margin-top: 20px;
+        margin-top: 40px; /* Forøget afstand fra toppen */
         gap: 20px;
     }
 
         .top-movie .left, .top-movie .right {
-            width: 45%;
-            border: 1px solid #ccc;
+            width: 100%; /* Fylder tilgængelig plads */
+            max-width: 750px; /* Maksimal bredde på kassen */
+            max-height: 225px; /* Maksimal højde på kassen */
+            border: 1px solid #ccc; /* Synlig kantlinje */
             padding: 10px;
             border-radius: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-sizing: border-box; /* Inkluder padding og border i størrelsen */
         }
 
         .top-movie .content {
             flex: 1;
             margin-right: 10px; /* Giver plads mellem tekst og billede */
+            overflow: hidden; /* Skjuler tekst, hvis det bliver for langt */
+            text-overflow: ellipsis; /* Tilføjer "..." hvis nødvendigt */
+            white-space: normal; /* Tillader flere linjer */
+            max-height: 200px; /* Begrænser højden på tekstområdet */
+            display: -webkit-box; /* Gør det muligt at begrænse linjer */
+            -webkit-line-clamp: 5; /* Maksimalt antal linjer (justér efter behov) */
+            -webkit-box-orient: vertical; /* Retningen af tekstblokken */
         }
 
         .top-movie img {
-            width: 150px;
-            height: 200px;
+            width: 150px; /* Fast bredde på billedet */
+            height: 200px; /* Fast højde på billedet */
             border: 1px solid #ccc;
             border-radius: 5px;
+            object-fit: cover; /* Sørger for, at billedet fylder proportionelt */
         }
+
+        /* Teksten bliver mindre, hvis kassen når maksimal størrelse */
+        .top-movie .content h1 {
+            font-size: 1.5rem; /* Normal størrelse */
+            font-size: calc(1.5rem - 0.3vw); /* Dynamisk størrelse */
+            margin: 0 0 10px 0; /* Giver afstand til efterfølgende tekst */
+        }
+
+        .top-movie .content p {
+            font-size: 1rem; /* Normal størrelse */
+            font-size: calc(1rem - 0.2vw); /* Dynamisk størrelse */
+            margin: 0; /* Fjerner unødvendig margin */
+            line-height: 1.5; /* Gør teksten mere læsbar */
+        }
+
+    .line {
+        display: flex;
+        gap: 20px; /* Afstand mellem span-elementer */
+        margin: 0; /* Fjerner ekstra margin omkring linjen */
+        flex-wrap: wrap; /* Tillader linjeskift, hvis nødvendigt */
+    }
+
+        .line span {
+            display: inline-block; /* Sørger for, at de optræder inline */
+            margin-top: 5px; /* Giver lidt afstand til toppen */
+            font-size: 0.9rem; /* Juster teksten efter behov */
+        }
+
+
+
+
 
 
     /* Latest Movies Section */
@@ -223,18 +272,38 @@
             display: flex;
             gap: 15px;
             padding: 0;
+            justify-content: space-between; /* Fordel pladsen jævnt */
         }
 
             .row ul li {
                 text-align: center;
+                flex: 1; /* Sørger for, at elementerne fylder ens */
+                max-width: 150px; /* Sætter en fast bredde */
+                height: auto; /* Lader højden justeres efter indholdet */
             }
 
                 .row ul li img {
-                    width: 100px;
-                    height: 150px;
-                    object-fit: cover;
+                    width: 150px; /* Fast bredde */
+                    height: 200px; /* Fast højde */
+                    object-fit: cover; /* Sørger for, at billedet fylder uden at strække */
                     margin-bottom: 5px;
+                    border: none; /* Fjerner billedets kantlinje */
                 }
+
+                .row ul li button {
+                    background: none; /* Fjerner baggrundsfarve */
+                    border: none; /* Fjerner kantlinje */
+                    padding: 0; /* Fjerner ekstra plads */
+                }
+
+                .row ul li p {
+                    margin-top: 5px;
+                    font-size: 0.9rem; /* Juster tekststørrelse */
+                    text-align: center;
+                }
+
+
+
 
 </style>
 
