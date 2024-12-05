@@ -1,11 +1,252 @@
-﻿
+﻿@page "/Søge/{query}"
+@inject HttpClient Http
+@using FilmAnmeldelseApi.Dto
+@inject NavigationManager NavigationManager
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
 
-@page "/Søge"
+<!-- Topbar -->
+<nav class="topbar">
+    <div class="nav">
+        <NavLink href="/" class="nav-link home">Hjem</NavLink>
+        <form class="search-container" @onsubmit="HandleSearch">
+            <input type="text" @bind="search" placeholder="Søg Film" class="nav-link search" />
+        </form>
+        <div class="konto">
+            <NavLink href="/Opret" class="nav-link opret">Opret bruger</NavLink>
+            <NavLink href="/Login" class="nav-link login">Login</NavLink>
+        </div>
+    </div>
+</nav>
 
-<h3>Søge</h3>
+@{
+    bool showTitle = FilmResults != null && FilmResults.Any();
+}
+
+@if (showTitle)
+{
+<div class="centered-title">
+<h1>Søgeresultater for: @Query</h1>
+<h2>@FilmResults?.Count: Resultater</h2>
+</div>
+}
+
+<div class="container">
+    <h2 class="Emne">Film</h2>
+    @if (FilmResults != null && FilmResults.Any())
+    {
+        <div class="film-grid">
+            @foreach (var film in FilmResults)
+            {
+                <div class="film-item">
+                    <img src="@ConvertToImageUrl(film.Plakat)" alt="@film.Titel" />
+                    <p>@film.Titel</p>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>Ingen film fundet.</p>
+    }
+</div>
+
+<div>
+    <h2>Brugere</h2>
+    @if (UserResults != null && UserResults.Any())
+    {
+        <ul class="user-list">
+            @foreach (var user in UserResults)
+            {
+                <li>
+                    @if (user.Billede != null)
+                    {
+                        <img src="@ConvertToImageUrl(user.Billede)" alt="@user.Brugernavn" width="50" height="50" />
+                    }
+                    <p>@user.Brugernavn</p>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Ingen brugere fundet.</p>
+    }
+</div>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Topbar */
+    .topbar {
+        position: fixed;
+        top: 0; /* Sørger for, at topbaren starter helt øverst */
+        left: 0;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 20px; /* Reduceret padding for at mindske højden */
+        border-bottom: 1px solid #ccc;
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex: 1; /* Gør navigationen fleksibel */
+    }
+
+    .search-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .search-container input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+    .konto {
+        margin-left: auto; /* Flytter konto-sektionen til højre */
+        display: flex;
+        gap: 10px;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    /* Titel */
+    .centered-title {
+        text-align: center; /* Centrerer teksten vandret */
+        margin: 50px 0; /* Tilføjer lidt afstand over og under overskriften */
+    }
 
 
+    /* Film Grid */
+    .container{
+        justify-content:center;
+    }
+
+    .Emne{
+        justify-self: center;
+    }
+
+    .film-grid {
+        display: flex;
+        flex-wrap: wrap; /* Tillader flere rækker */
+        justify-content: center; /* Centrerer filmene */
+        gap: 20px; /* Afstand mellem elementerne */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .film-item {
+        width: 200px; /* Fast bredde for hver film */
+        height: 250px; /* Fast højde for hver film */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centrerer indholdet lodret */
+        /* justify-content: space-between; */ /* Giver plads mellem billede og tekst */
+        text-align: center; /* Centrerer teksten */
+    }
+
+        .film-item img {
+            width: 150px; /* Fast bredde på billedet */
+            height: 200px; /* Fast højde på billedet */
+            object-fit: cover; /* Sørger for, at billedet fylder uden at strække */
+        }
+
+        .film-item p {
+            margin: 0;
+            font-size: 0.9rem; /* Juster tekststørrelse */
+            text-align: center;
+            word-wrap: break-word; /* Tillader linjeskift i lange titler */
+            justify-content:center;
+        }
+
+    .container p {
+        justify-self: center;
+    }
+
+    /* User List */
+    .user-list {
+        list-style: none;
+        padding: 0;
+    }
+
+        .user-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .user-list img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+</style>
 
 @code {
-    
+    [Parameter] public string Query { get; set; } = string.Empty;
+    private List<SearchFilmDto> FilmResults { get; set; } = null!;
+    private List<SearchUserDto> UserResults { get; set; } = null!;
+    private string search = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadSearchResults();
+    }
+
+    private async Task LoadSearchResults()
+    {
+        try
+        {
+            // Søg efter film
+            var filmResponse = await Http.GetFromJsonAsync<List<SearchFilmDto>>($"api/Search/films/{Query}");
+            FilmResults = filmResponse ?? new List<SearchFilmDto>();
+
+            // Søg efter brugere
+            var userResponse = await Http.GetFromJsonAsync<List<SearchUserDto>>($"api/Search/users/{Query}");
+            UserResults = userResponse ?? new List<SearchUserDto>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Fejl under indlæsning: {ex.Message}");
+        }
+    }
+
+    private string ConvertToImageUrl(byte[] imageBytes)
+    {
+        return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
+    }
+
+    private void HandleSearch()
+    {
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            NavigationManager.NavigateTo($"/Søge/{search}");
+        }
+    }
 }

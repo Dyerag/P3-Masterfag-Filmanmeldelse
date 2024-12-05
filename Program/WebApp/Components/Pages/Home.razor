@@ -4,12 +4,15 @@
 
 <PageTitle>Home</PageTitle>
 
+@inject NavigationManager NavigationManager
 @inherits LayoutComponentBase
+@rendermode InteractiveServer
+
 <!-- Topbar -->
 <nav class="topbar">
     <div class="nav">
         <NavLink href="/" class="nav-link home">Hjem</NavLink>
-        <form class="search-container">
+        <form class="search-container" @onsubmit="HandleSearch">
             <input type="text" @bind="search" placeholder="Søg Film" class="nav-link search" />
         </form>
         <div class="konto">
@@ -188,7 +191,7 @@
         display: flex;
         justify-content: space-around;
         margin-left: 220px; /* Afstand fra sidebar */
-        margin-top: 40px; /* Forøget afstand fra toppen */
+        margin-top: 50px; /* Forøget afstand fra toppen */
         gap: 20px;
     }
 
@@ -308,7 +311,7 @@
 </style>
 
 @code {
-    string search = "";
+    private string search = string.Empty;
 
     private FilmDto? randomLeft;
     private FilmDto? randomRight;
@@ -329,5 +332,13 @@
     private string ConvertToImageUrl(byte[] imageBytes)
     {
         return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
+    }
+
+    private void HandleSearch()
+    {
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            NavigationManager.NavigateTo($"/Søge/{search}");
+        }
     }
 }

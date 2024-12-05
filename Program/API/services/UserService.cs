@@ -1,6 +1,6 @@
 ﻿using FilmAnmeldelseApi.Interfaces;
 using WebApp.model;
-using FilmAnmeldelseApi;
+using FilmAnmeldelseApi.Dto;
 
 namespace WebApp.services
 {
@@ -50,6 +50,22 @@ namespace WebApp.services
             }
 
             return user;
+        }
+
+        /// <summary>
+        /// Søger efter brugere baseret på brugernavn.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public List<SearchUserDto> SearchUsersByUsername(string username)
+        {
+            var users = _repository.GetUsersByUsername(username);
+            return users.Select(u => new SearchUserDto
+            {
+                Id = u.Id,
+                Brugernavn = u.Brugernavn,
+                Billede = u.Billede
+            }).ToList();
         }
     }
 }

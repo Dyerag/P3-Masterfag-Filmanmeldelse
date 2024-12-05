@@ -5,11 +5,11 @@ using FilmAnmeldelseApi.Interfaces;
 
 namespace FilmAnmeldelseApi.Repository
 {
-    public class OpretRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly FilmAnmeldelseContext _context;
 
-        public OpretRepository(FilmAnmeldelseContext context) => _context = context;
+        public UserRepository(FilmAnmeldelseContext context) => _context = context;
 
         /// <summary>
         /// Tilføjer en ny bruger til databasen.
@@ -43,6 +43,18 @@ namespace FilmAnmeldelseApi.Repository
         public async Task<bool> UserExistsAsync(string brugernavn)
         {
             return await _context.Users.AnyAsync(u => u.Brugernavn == brugernavn);
+        }
+
+        /// <summary>
+        /// Søger efter brugere baseret på brugernavn (case insensitive).
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public ICollection<User> GetUsersByUsername(string username)
+        {
+            return _context.Users
+                .Where(u => EF.Functions.Like(u.Brugernavn, $"%{username}%"))
+                .ToList();
         }
     }
 }
