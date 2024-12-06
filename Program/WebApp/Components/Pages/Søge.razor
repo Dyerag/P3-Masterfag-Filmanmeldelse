@@ -19,16 +19,21 @@
     </div>
 </nav>
 
+@* <div class="roll">
+    <button @onscroll="a">Film</button>
+    <button>User</button>
+</div> *@
+
 @{
     bool showTitle = FilmResults != null && FilmResults.Any();
 }
 
 @if (showTitle)
 {
-<div class="centered-title">
-<h1>Søgeresultater for: @Query</h1>
-<h2>@FilmResults?.Count: Resultater</h2>
-</div>
+    <div class="centered-title" id="a">
+        <h1>Søgeresultater for: @Query</h1>
+        <h2>@FilmResults?.Count: Resultater</h2>
+    </div>
 }
 
 <div class="container">
@@ -51,11 +56,26 @@
     }
 </div>
 
-<div>
-    <h2>Brugere</h2>
+
+@{
+    bool showUser = UserResults != null && UserResults.Any();
+}
+
+@if (showUser)
+{
+    <div class="centered-title">
+        <h1>Søgeresultater for: @Query</h1>
+        <h2>@UserResults?.Count: Resultater</h2>
+    </div>
+}
+
+
+
+<div class="container">
+    <h2 class="Emne">Brugere</h2>
     @if (UserResults != null && UserResults.Any())
     {
-        <ul class="user-list">
+        <ul @* class="user-list" *@ class="film-grid">
             @foreach (var user in UserResults)
             {
                 <li>
@@ -133,6 +153,11 @@
         text-align: center;
     }
 
+    .roll{
+        position:absolute;
+        margin-top:50px;
+    }
+
     /* Titel */
     .centered-title {
         text-align: center; /* Centrerer teksten vandret */
@@ -147,6 +172,7 @@
 
     .Emne{
         justify-self: center;
+        
     }
 
     .film-grid {
