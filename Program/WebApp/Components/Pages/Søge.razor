@@ -1,9 +1,13 @@
 ﻿@page "/Søge/{query}"
-@inject HttpClient Http
-@using FilmAnmeldelseApi.Dto
-@inject NavigationManager NavigationManager
+@* @inject HttpClient Http
+@using FilmAnmeldelseApi.Dto *@
+
+@* @using WebApp.Authentication
+@inject NavigationManager NavigationManager *@
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
+@* @inject AuthenticationStateProvider AuthStateProvider
+@using Microsoft.AspNetCore.Components.Authorization *@
 
 <!-- Topbar -->
 <nav class="topbar">
@@ -12,10 +16,20 @@
         <form class="search-container" @onsubmit="HandleSearch">
             <input type="text" @bind="search" placeholder="Søg Film" class="nav-link search" />
         </form>
-        <div class="konto">
-            <NavLink href="/Opret" class="nav-link opret">Opret bruger</NavLink>
-            <NavLink href="/Login" class="nav-link login">Login</NavLink>
-        </div>
+        <AuthorizeView>
+            <Authorized>
+                <div class="konto">
+                    <button class="nav-link" @onclick="Logout">Log ud</button>
+                </div>
+            </Authorized>
+            <NotAuthorized>
+                <div class="konto">
+                    <NavLink href="/Opret" class="nav-link opret">Opret bruger</NavLink>
+                    <NavLink href="/Login" class="nav-link login">Login</NavLink>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+
     </div>
 </nav>
 
@@ -273,6 +287,15 @@
         if (!string.IsNullOrWhiteSpace(search))
         {
             NavigationManager.NavigateTo($"/Søge/{search}");
+        }
+    }
+
+    private async Task Logout()
+    {
+        if (AuthStateProvider is CustomAuthenticationStateProvider authProvider)
+        {
+            authProvider.MarkUserAsLoggedOut();
+            NavigationManager.NavigateTo("/");
         }
     }
 }

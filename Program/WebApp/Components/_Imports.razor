@@ -13,5 +13,11 @@
 @* tilføjet *@
 @using FilmAnmeldelseApi.Dto
 @inject FilmService Filmservies
-
-
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+@using Microsoft.AspNetCore.Components.Authorization
+@using WebApp.Authentication
+@using WebApp.Components.Layout
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@using Microsoft.AspNetCore.Http.Extensions

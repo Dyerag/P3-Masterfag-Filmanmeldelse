@@ -1,10 +1,18 @@
 using WebApp.Services;
 using WebApp.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
+using WebApp.Authentication;
+using Microsoft.AspNetCore.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44352") });
 builder.Services.AddScoped<FilmService>();
+
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+builder.Services.AddAuthenticationCore();
+builder.Services.AddCascadingAuthenticationState();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -29,7 +37,11 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.UseStaticFiles();
+app.UseRouting();
 app.UseAntiforgery();
+//app.UseAuthorization();
+//app.UseAuthentication();
+
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

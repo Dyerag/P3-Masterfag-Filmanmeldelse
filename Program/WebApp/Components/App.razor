@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@inherits LayoutComponentBase
+
+@* @using Microsoft.AspNetCore.Components.Authorization
+@using WebApp.Authentication
+@using WebApp.Components.Layout
+@inject NavigationManager NavigationManager *@
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,8 +22,35 @@
 </head>
 
 <body>
-    <Routes />
-    <script src="_framework/blazor.web.js"></script>
+    @* <CascadingAuthenticationState> *@
+    <Router AppAssembly="@typeof(App).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Beklager, denne side blev ikke fundet.</p>
+            </LayoutView>
+        </NotFound>
+        </Router>
+    @* </CascadingAuthenticationState> *@
+     @* <Routes /> *@
+     <script src="_framework/blazor.web.js"></script>
 </body>
 
 </html>
+
+
+@code{
+    // [Inject] private AuthenticationStateProvider AuthStateProvider { get; set; } = null!;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && AuthStateProvider is CustomAuthenticationStateProvider customAuthProvider)
+        {
+            customAuthProvider.CompleteTokenCheck();
+        }
+    }
+
+}
