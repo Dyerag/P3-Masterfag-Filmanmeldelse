@@ -12,27 +12,7 @@
 @* @inject IJSRuntime JSRuntime *@
 
 <!-- Topbar -->
-<nav class="topbar">
-    <div class="nav">
-        <NavLink href="/"  class="nav-link home">Hjem</NavLink>
-        <form class="search-container" @onsubmit="HandleSearch">
-            <input type="text" @bind="search" placeholder="Søg Film" class="nav-link search" />
-        </form>
-        <AuthorizeView>
-            <Authorized>
-                <div class="konto">
-                    <button class="nav-link" @onclick="Logout">Log ud</button>
-                </div>
-            </Authorized>
-            <NotAuthorized>
-                <div class="konto">
-                    <NavLink href="/Opret" class="nav-link opret">Opret bruger</NavLink>
-                    <NavLink href="/Login" class="nav-link login">Login</NavLink>
-                </div>
-            </NotAuthorized>
-        </AuthorizeView>
-    </div>
-</nav>
+<Top />
 
 
 <!-- Sidebar -->
@@ -98,7 +78,7 @@
                 @foreach (var film in latestFilms)
                 {
                     <li>
-                        <button>
+                        <button @onclick="() => NavigateToFilmDetails(film.Id)">
                             <img src="@ConvertToImageUrl(film.Plakat)" alt="Film Plakat" />
                             <p>@film.Titel</p>
                         </button>
@@ -108,6 +88,30 @@
         </ul>
     </div>
 </nav>
+
+<AuthorizeView>
+    <Authorized>
+        <nav class="row">
+            <div>
+                <h1>dine anmeldelse</h1>
+                <ul>
+                    @if (latestFilms != null && latestFilms.Any())
+                    {
+                        @foreach (var film in latestFilms)
+                        {
+                            <li>
+                                <button type="button" @onclick="() => NavigateToFilmDetails(film.Id)">
+                                    <img src="@ConvertToImageUrl(film.Plakat)" alt="Film Plakat" />
+                                    <p>@film.Titel</p>
+                                </button>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </nav>
+    </Authorized>
+</AuthorizeView>
 
 <style>
 
@@ -120,58 +124,6 @@
         height: 100vh;
     }
 
-    /* Topbar */
-    .topbar {
-        position: fixed;
-        top: 0; 
-        left: 0;
-        width: 100%;
-        height: 60px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px 20px;
-        border-bottom: 1px solid #ccc;
-    }
-
-    .nav {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        flex: 1; 
-    }
-
-    .search-container {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-        .search-container input {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 300px;
-        }
-
-    .konto {
-        margin-left: auto;
-        display: flex;
-        gap: 10px;
-    }
-
-    .nav-link {
-        text-decoration: none;
-        font-size: 1rem;
-        padding: 5px 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        text-align: center;
-    }
-
     /* Sidebar */
     .sidebar {
         width: 200px;
@@ -182,6 +134,7 @@
         top: 50px; /* Under topbar */
         left: 0;
         text-align: center;
+        padding-top:10vh;
     }
 
     .nav-side p {
@@ -302,7 +255,7 @@
                     width: 150px; /* Fast bredde */
                     height: 200px; /* Fast højde */
                     object-fit: cover; /* Sørger for, at billedet fylder uden at strække */
-                    margin-bottom: 5px;
+                    /* margin-bottom: 5px; */
                     border: none; /* Fjerner billedets kantlinje */
                 }
 
@@ -324,8 +277,6 @@
 </style>
 
 @code {
-    private string search = string.Empty;
-
     private FilmDto? randomLeft;
     private FilmDto? randomRight;
 
@@ -347,22 +298,8 @@
         return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
     }
 
-    private void HandleSearch()
+    private void NavigateToFilmDetails(int filmId)
     {
-        if (!string.IsNullOrWhiteSpace(search))
-        {
-            NavigationManager.NavigateTo($"/Søge/{search}");
-        }
+        NavigationManager.NavigateTo($"/FilmDetails/{filmId}");
     }
-
-    private async Task Logout()
-    {
-        if (AuthStateProvider is CustomAuthenticationStateProvider authProvider)
-        {
-            authProvider.MarkUserAsLoggedOut();
-            NavigationManager.NavigateTo("/");
-        }
-    }
-
-    
 }

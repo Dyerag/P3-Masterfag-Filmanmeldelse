@@ -1,0 +1,213 @@
+﻿@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+@* @using WebApp.Components.Pages *@
+
+@page "/FilmDetails/{filmId:int}"
+
+
+<!-- Topbar -->
+<Top />
+
+<h1 class="title">title</h1>
+
+
+
+
+<div class="line" style="position: relative;">
+    <!-- Første boks -->
+    <nav class="@GetBoxClass()" style="transition: all 0.5s ease-in-out;">
+        <div>
+            @if (film != null)
+            {
+                <div class="left">
+                    <img src="@ConvertToImageUrl(film.Plakat)" alt="@film.Titel Plakat" />
+                    <p>@film.Gennemsnitsanmeldelse / 5</p>
+                    <button @onclick="ToggleBox" class="toggle-button">
+                        @(isBoxExpanded ? "Luk" : "Vis større")
+                    </button>
+                </div>
+                <div class="@GetExpandedBoxClass()">
+                    <div class="beskrivelse"></div>
+                    <div class="info"></div>
+                    <div class="personer"></div>
+                </div>
+            }
+        </div>
+    </nav>
+
+    <!-- Anden boks -->
+    <nav class="@GetBackBoxClass()">
+        <p>boks 2</p>
+    </nav>
+</div>
+
+<style>
+    .line {
+        display: flex;
+        
+    }
+
+    .title {
+        width: 100vw;
+        height: 5vh;
+        justify-self: center;
+        margin-top: 5vh;
+        text-align: center;
+        justify-self: center;
+    }
+
+    .left {
+        width: 20vw;
+        /* border-right: 0.5px solid #ccc; */
+        
+    }
+
+    .right {
+        
+    }
+
+        .right.hidden {
+            display: none;
+        }
+
+    .beskrivelse {
+        height: 10vh;
+        width: 10vw;
+        border: 0.5px solid #ccc;
+    }
+
+    .info {
+        height: 10vh;
+        width: 10vw;
+        border: 0.5px solid #ccc;
+    }
+
+    .personer {
+        height: 10vh;
+        width: 10vw;
+        border: 0.5px solid #ccc;
+    }
+
+    .box {
+        height: 80vh;
+        width: 20vw;
+        border: 0.5px solid #ccc;
+    }
+
+        .box.expanded {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 94vw;
+            height: 80vh;
+        }
+
+        .box img {
+            height: 50vh;
+            width: 18vw;
+            display: block;
+            margin-top: 2vh;
+            margin-left: 1vw;
+        }
+
+        .box p {
+            margin: 1vh;
+            justify-self: center;
+            font-size: x-large;
+        }
+
+    .review-chart {
+        height: 20vh;
+        width: 18vw;
+        border: 1px solid #ccc;
+        justify-items: center;
+        margin-left: 1vw;
+        margin-bottom: 2vh;
+    }
+
+    .back {
+        height: 80vh;
+        width: 70vw;
+        border: 1px solid #ccc;
+        margin-left: 5vw
+    }
+
+        .back.hidden {
+            display: none; /* Fjerner boksen fra visningen */
+        }
+
+    .toggle-button {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: medium;
+        cursor: pointer;
+    }
+
+    /* .details {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            } */
+</style>
+
+@code {
+    //test
+
+
+    [Parameter] public int filmId { get; set; }
+
+    private bool isBoxExpanded = false; // Holder styr på bokstilstand
+
+    private FilmDto? film;
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadFilmDetails();
+    }
+
+    private async Task LoadFilmDetails()
+    {
+        try
+        {
+            film = await Http.GetFromJsonAsync<FilmDto>($"api/Film/FindID/{filmId}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Fejl ved hentning af filmdata: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private string ConvertToImageUrl(byte[] imageBytes)
+    {
+        return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
+    }
+
+    private void ToggleBox()
+    {
+        isBoxExpanded = !isBoxExpanded;
+        // StateHasChanged(); // Sørger for at opdatere UI'et
+    }
+
+    private string GetBoxClass()
+    {
+        return isBoxExpanded ? "box expanded" : "box";
+    }
+
+    private string GetBackBoxClass()
+    {
+        return isBoxExpanded ? "back hidden" : "back";
+    }
+
+    private string GetExpandedBoxClass()
+    {
+        return isBoxExpanded ? "right" : "right hidden";
+    }
+}

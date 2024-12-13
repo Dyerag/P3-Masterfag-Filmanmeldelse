@@ -1,37 +1,16 @@
 ﻿@page "/Søge/{query}"
-@* @inject HttpClient Http
-@using FilmAnmeldelseApi.Dto *@
-
-@* @using WebApp.Authentication
-@inject NavigationManager NavigationManager *@
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
+
+@* @inject HttpClient Http
+@using FilmAnmeldelseApi.Dto *@
+@* @using WebApp.Authentication
+@inject NavigationManager NavigationManager *@
 @* @inject AuthenticationStateProvider AuthStateProvider
 @using Microsoft.AspNetCore.Components.Authorization *@
 
 <!-- Topbar -->
-<nav class="topbar">
-    <div class="nav">
-        <NavLink href="/" class="nav-link home">Hjem</NavLink>
-        <form class="search-container" @onsubmit="HandleSearch">
-            <input type="text" @bind="search" placeholder="Søg Film" class="nav-link search" />
-        </form>
-        <AuthorizeView>
-            <Authorized>
-                <div class="konto">
-                    <button class="nav-link" @onclick="Logout">Log ud</button>
-                </div>
-            </Authorized>
-            <NotAuthorized>
-                <div class="konto">
-                    <NavLink href="/Opret" class="nav-link opret">Opret bruger</NavLink>
-                    <NavLink href="/Login" class="nav-link login">Login</NavLink>
-                </div>
-            </NotAuthorized>
-        </AuthorizeView>
-
-    </div>
-</nav>
+<Top />
 
 @* <div class="scroll">
     <button @onscroll="a">Film</button>
@@ -51,7 +30,7 @@
 }
 
 <div class="container">
-    <h2 class="Emne">Film</h2>
+    <h2 class="Emne" style="margin-top:50px;">Film</h2>
     @if (FilmResults != null && FilmResults.Any())
     {
         <div class="film-grid">
@@ -88,14 +67,15 @@
 <div class="container">
     <h2 class="Emne">Brugere</h2>
     @if (UserResults != null && UserResults.Any())
-    {
-        <ul @* class="user-list" *@ class="film-grid">
+    {   @* class="user-list" *@
+        <ul class="film-grid">
             @foreach (var user in UserResults)
             {
                 <li>
                     @if (user.Billede != null)
                     {
                         <img src="@ConvertToImageUrl(user.Billede)" alt="@user.Brugernavn" width="50" height="50" />
+                        
                     }
                     <p>@user.Brugernavn</p>
                 </li>
@@ -113,63 +93,6 @@
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
-    }
-
-    /* Topbar */
-    .topbar {
-        position: fixed;
-        top: 0; /* Sørger for, at topbaren starter helt øverst */
-        left: 0;
-        width: 100%;
-        height: 60px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px 20px; /* Reduceret padding for at mindske højden */
-        border-bottom: 1px solid #ccc;
-    }
-
-    .nav {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        flex: 1; /* Gør navigationen fleksibel */
-    }
-
-    .search-container {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-        .search-container input {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 300px;
-        }
-
-    .konto {
-        margin-left: auto; /* Flytter konto-sektionen til højre */
-        display: flex;
-        gap: 10px;
-    }
-
-    .nav-link {
-        text-decoration: none;
-        font-size: 1rem;
-        padding: 5px 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .roll{
-        position:absolute;
-        margin-top:50px;
     }
 
     /* Titel */
@@ -261,12 +184,21 @@
 
     private async Task LoadSearchResults()
     {
+        FilmResults = new List<SearchFilmDto>();
+        UserResults = new List<SearchUserDto>();
         try
         {
             // Søg efter film
             var filmResponse = await Http.GetFromJsonAsync<List<SearchFilmDto>>($"api/Search/films/{Query}");
-            FilmResults = filmResponse ?? new List<SearchFilmDto>();
+            FilmResults = filmResponse ?? new List<SearchFilmDto>();   
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Fejl under indlæsning: {ex.Message}");
+        }
 
+        try
+        {
             // Søg efter brugere
             var userResponse = await Http.GetFromJsonAsync<List<SearchUserDto>>($"api/Search/users/{Query}");
             UserResults = userResponse ?? new List<SearchUserDto>();

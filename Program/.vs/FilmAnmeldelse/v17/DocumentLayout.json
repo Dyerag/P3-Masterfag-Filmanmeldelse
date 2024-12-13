@@ -3,32 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\azak\\source\\repos\\p3-masterfag-filmanmeldelse\\program\\webapp\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\azak\\source\\repos\\p3-masterfag-filmanmeldelse\\program\\webapp\\authentication\\customauthenticationstateprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\authentication\\customauthenticationstateprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\azak\\source\\repos\\p3-masterfag-filmanmeldelse\\program\\webapp\\components\\pages\\opret.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\pages\\opret.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\azak\\source\\repos\\p3-masterfag-filmanmeldelse\\program\\webapp\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\azak\\source\\repos\\p3-masterfag-filmanmeldelse\\program\\webapp\\components\\pages\\s\u00F8ge.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\pages\\s\u00F8ge.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\azak\\source\\repos\\p3-masterfag-filmanmeldelse\\program\\webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\azak\\source\\repos\\p3-masterfag-filmanmeldelse\\program\\webapp\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\azak\\source\\repos\\p3-masterfag-filmanmeldelse\\program\\webapp\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|c:\\users\\azak\\source\\repos\\p3-masterfag-filmanmeldelse\\program\\webapp\\components\\pages\\filmdetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2DE08D59-88F5-492A-B159-E2E3B3270022}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\pages\\filmdetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,91 +30,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Opret.razor",
-              "DocumentMoniker": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\Opret.razor",
-              "RelativeDocumentMoniker": "WebApp\\Components\\Pages\\Opret.razor",
-              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\Opret.razor",
-              "RelativeToolTip": "WebApp\\Components\\Pages\\Opret.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-10T11:25:30.849Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Login.razor",
-              "DocumentMoniker": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\Login.razor",
-              "RelativeDocumentMoniker": "WebApp\\Components\\Pages\\Login.razor",
-              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\Login.razor",
-              "RelativeToolTip": "WebApp\\Components\\Pages\\Login.razor",
-              "ViewState": "AQIAAJMAAAAAAAAAAAAAAAcAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-10T11:24:04.518Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "S\u00F8ge.razor",
               "DocumentMoniker": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\S\u00F8ge.razor",
               "RelativeDocumentMoniker": "WebApp\\Components\\Pages\\S\u00F8ge.razor",
-              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\S\u00F8ge.razor",
-              "RelativeToolTip": "WebApp\\Components\\Pages\\S\u00F8ge.razor",
-              "ViewState": "AQIAABkBAAAAAAAAAAAAACkBAAAuAAAA",
+              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\S\u00F8ge.razor*",
+              "RelativeToolTip": "WebApp\\Components\\Pages\\S\u00F8ge.razor*",
+              "ViewState": "AQIAAK8AAAAAAAAAAAAowLsAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-10T11:14:16.315Z",
+              "WhenOpened": "2024-12-13T10:47:35.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FilmDetails.razor",
+              "DocumentMoniker": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\FilmDetails.razor",
+              "RelativeDocumentMoniker": "WebApp\\Components\\Pages\\FilmDetails.razor",
+              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\FilmDetails.razor",
+              "RelativeToolTip": "WebApp\\Components\\Pages\\FilmDetails.razor",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T07:41:46.407Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CustomAuthenticationStateProvider.cs",
-              "DocumentMoniker": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Authentication\\CustomAuthenticationStateProvider.cs",
-              "RelativeDocumentMoniker": "WebApp\\Authentication\\CustomAuthenticationStateProvider.cs",
-              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Authentication\\CustomAuthenticationStateProvider.cs",
-              "RelativeToolTip": "WebApp\\Authentication\\CustomAuthenticationStateProvider.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAA0wEcAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T09:40:39.954Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Program.cs",
-              "RelativeDocumentMoniker": "WebApp\\Program.cs",
-              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Program.cs",
-              "RelativeToolTip": "WebApp\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T09:34:26.388Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App.razor",
-              "DocumentMoniker": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\App.razor",
-              "RelativeDocumentMoniker": "WebApp\\Components\\App.razor",
-              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\App.razor",
-              "RelativeToolTip": "WebApp\\Components\\App.razor",
-              "ViewState": "AQIAABYAAAAAAAAAAAAmwCUAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-09T09:32:10.589Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "WebApp\\Components\\Pages\\Home.razor",
-              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\Home.razor*",
-              "RelativeToolTip": "WebApp\\Components\\Pages\\Home.razor*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAARAAAA",
+              "ToolTip": "C:\\Users\\azak\\source\\repos\\P3-Masterfag-Filmanmeldelse\\Program\\WebApp\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "WebApp\\Components\\Pages\\Home.razor",
+              "ViewState": "AQIAABEBAAAAAAAAAAAAAIgAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-05T12:48:55.394Z",
               "EditorCaption": ""

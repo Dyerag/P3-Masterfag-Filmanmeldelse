@@ -42,7 +42,6 @@ app.UseAntiforgery();
 //app.UseAuthorization();
 //app.UseAuthentication();
 
-
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 

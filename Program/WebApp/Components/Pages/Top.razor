@@ -1,0 +1,105 @@
+﻿<nav class="topbar">
+    <div class="nav">
+        <NavLink href="/" class="nav-link home">Hjem</NavLink>
+        <form class="search-container" @onsubmit="HandleSearch">
+            <input type="text" @bind="search" placeholder="Søg Film" class="nav-link search" />
+        </form>
+        <AuthorizeView>
+            <Authorized>
+                <div class="konto">
+                    <button class="nav-link" @onclick="Logout">Log ud</button>
+                </div>
+            </Authorized>
+            <NotAuthorized>
+                <div class="konto">
+                    <NavLink href="/Opret" class="nav-link opret">Opret bruger</NavLink>
+                    <NavLink href="/Login" class="nav-link login">Login</NavLink>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</nav>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex: 1;
+    }
+
+    .search-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .search-container input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+    .konto {
+        margin-left: auto;
+        display: flex;
+        gap: 10px;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+
+@code{
+    private string search = string.Empty;
+
+    private void HandleSearch()
+    {
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            NavigationManager.NavigateTo($"/Søge/{search}");
+        }
+    }
+
+    private async Task Logout()
+    {
+        if (AuthStateProvider is CustomAuthenticationStateProvider authProvider)
+        {
+            authProvider.MarkUserAsLoggedOut();
+            NavigationManager.NavigateTo("/");
+        }
+    }
+}
