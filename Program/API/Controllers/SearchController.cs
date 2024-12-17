@@ -48,5 +48,7 @@ namespace FilmAnmeldelseApi.Controllers
 
             return Ok(users);
         }
+
+        
     }
 }

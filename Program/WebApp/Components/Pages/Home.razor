@@ -6,7 +6,7 @@
 
 @* @using Microsoft.AspNetCore.Components.Authorization
 @using WebApp.Authentication
-@using WebApp.Authentication 
+@using WebApp.Authentication
 @inject AuthenticationStateProvider AuthStateProvider *@
 @* @inject NavigationManager NavigationManager *@
 @* @inject IJSRuntime JSRuntime *@
@@ -41,6 +41,7 @@
     <div class="left">
         @if (randomLeft != null)
         {
+
             <div class="content">
                 <h1>@randomLeft.Titel</h1>
                 <p>@randomLeft.Synopse</p>
@@ -49,7 +50,9 @@
                     <span>Rating: @randomLeft.Gennemsnitsanmeldelse</span>
                 </p>
             </div>
-            <img src="@ConvertToImageUrl(randomLeft.Plakat)" alt="Random Left Film Image" />
+            <button class="topButtom" @onclick="() => NavigateToFilmDetails(randomLeft.Id)">
+                <img src="@ConvertToImageUrl(randomLeft.Plakat)" alt="Random Left Film Image" />
+            </button>
         }
     </div>
     <div class="right">
@@ -63,7 +66,9 @@
                     <span>Rating: @randomRight.Gennemsnitsanmeldelse</span>
                 </p>
             </div>
-            <img src="@ConvertToImageUrl(randomRight.Plakat)" alt="Random Right Film Image" />
+            <button class="topButtom" @onclick="() => NavigateToFilmDetails(randomRight.Id)">
+                <img src="@ConvertToImageUrl(randomRight.Plakat)" alt="Random Right Film Image" />
+            </button>
         }
     </div>
 </nav>
@@ -134,7 +139,7 @@
         top: 50px; /* Under topbar */
         left: 0;
         text-align: center;
-        padding-top:10vh;
+        padding-top: 10vh;
     }
 
     .nav-side p {
@@ -153,6 +158,11 @@
         }
 
     /* Top Movie Section */
+    .topButtom{
+        border:none;
+        background:none;
+    }
+
     .top-movie {
         display: flex;
         justify-content: space-around;
@@ -192,6 +202,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             object-fit: cover; /* Sørger for, at billedet fylder proportionelt */
+            border:none;
         }
 
         /* Teksten bliver mindre, hvis kassen når maksimal størrelse */
@@ -270,9 +281,6 @@
                     font-size: 0.9rem; /* Juster tekststørrelse */
                     text-align: center;
                 }
-
-
-
 
 </style>
 
