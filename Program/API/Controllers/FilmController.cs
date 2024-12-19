@@ -7,20 +7,13 @@ namespace FilmAnmeldelseApi.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class FilmController : ControllerBase
+    public class FilmController(IFilmRepository filmRepository, IMapper mapper, IAnmeldelseRepository anmeldelserRepository) : ControllerBase
     {
         //IFilmRepository er scoped til FilmRepository
-        private readonly IFilmRepository _filmRepository;
-        private readonly IMapper _mapper;
+        private readonly IFilmRepository _filmRepository = filmRepository;
+        private readonly IMapper _mapper = mapper;
         // IAnmeldelserRepository bruges til at sortere rækkefølgen af film der er søgt gennem titlen
-        private readonly IAnmeldelseRepository _anmeldelseRepository;
-
-        public FilmController(IFilmRepository filmRepository, IMapper mapper, IAnmeldelseRepository anmeldelserRepository)
-        {
-            _filmRepository = filmRepository;
-            _mapper = mapper;
-            _anmeldelseRepository = anmeldelserRepository;
-        }
+        private readonly IAnmeldelseRepository _anmeldelseRepository = anmeldelserRepository;
 
         [HttpGet("FindID/{filmId}")]
         public IActionResult GetFilm(int filmId)

@@ -8,16 +8,10 @@ namespace FilmAnmeldelseApi.Controllers
     //Todo Test this controller when there is actually any data in the Anmeldelser table
     [Route("[controller]")]
     [ApiController]
-    public class AnmeldelseController : ControllerBase
+    public class AnmeldelseController(IAnmeldelseRepository anmeldelseRepository, IMapper mapper) : ControllerBase
     {
-        private readonly IAnmeldelseRepository _anmeldelseRepository;
-        private readonly IMapper _mapper;
-
-        public AnmeldelseController(IAnmeldelseRepository anmeldelseRepository, IMapper mapper)
-        {
-            _anmeldelseRepository = anmeldelseRepository;
-            _mapper = mapper;
-        }
+        private readonly IAnmeldelseRepository _anmeldelseRepository = anmeldelseRepository;
+        private readonly IMapper _mapper = mapper;
 
         [HttpGet("FilmAnmeldelser/{filmId}/{userId}")]
         public IActionResult GetFilmAnmeldelser(int filmId, int userId = 0)
@@ -29,7 +23,7 @@ namespace FilmAnmeldelseApi.Controllers
 
             if (userId != 0)
             {
-                List<AnmeldelseDto> userFirstAnmeldelser = new List<AnmeldelseDto>();
+                List<AnmeldelseDto> userFirstAnmeldelser = [];
 
                 foreach (var anmeldelse in anmeldelser)
                 {
