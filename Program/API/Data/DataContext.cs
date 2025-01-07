@@ -11,7 +11,7 @@ namespace FilmAnmeldelseApi.Data
         {
         }
 
-        // Scaffolding tilføjede et s til alle DbSet properties, og den standard bliver fulgt i de manuelt skabet DbSet
+        // Scaffolding tilføjede et "s" til alle DbSet properties, og den standard bliver fulgt i de manuelt skabet DbSet
         public DbSet<Anmeldelse> Anmeldelses { get; set; }
 
         public DbSet<Direktør> Direktørs { get; set; }
