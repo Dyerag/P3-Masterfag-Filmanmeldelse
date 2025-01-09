@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FilmAnmeldelseApi.Migrations
+namespace Api.Migrations
 {
     /// <inheritdoc />
     public partial class InitCreate : Migration

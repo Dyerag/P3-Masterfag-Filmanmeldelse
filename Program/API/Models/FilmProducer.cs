@@ -1,4 +1,4 @@
-﻿namespace FilmAnmeldelseApi.Models
+﻿namespace Api.Models
 {
     public class FilmProducer
     {

@@ -1,7 +1,7 @@
-﻿using FilmAnmeldelseApi.Models;
+﻿using Api.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FilmAnmeldelseApi.Data
+namespace Api.Data
 {
     // Datacontext kommunikere med databasen ved brug af NuGet pakkerne EF Core: Design, Sqlserver og tools
     // Contexten blev lavet med "database first approach". Derfor blev scaffolding brugt.

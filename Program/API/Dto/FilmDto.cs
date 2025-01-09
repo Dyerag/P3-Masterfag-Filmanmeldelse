@@ -1,12 +1,12 @@
-﻿namespace FilmAnmeldelseApi.Dto
+﻿namespace Api.Dto
 {
     public class FilmDto
     {
         public int Id { get; set; }
 
         public string Titel { get; set; } = null!;
-        //Todo Temporarily made plakat a commment. Undo that later
-        //public byte[] Plakat { get; set; } = null!;
+
+        public byte[] Plakat { get; set; } = null!;
 
         public string Synopse { get; set; } = null!;
 

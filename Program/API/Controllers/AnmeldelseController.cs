@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using FilmAnmeldelseApi.Dto;
-using FilmAnmeldelseApi.Interfaces;
+using Api.Dto;
+using Api.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FilmAnmeldelseApi.Controllers
+namespace Api.Controllers
 {
     //Todo Test this controller when there is actually any data in the Anmeldelser table
     [Route("[controller]")]
@@ -13,6 +13,7 @@ namespace FilmAnmeldelseApi.Controllers
         private readonly IAnmeldelseRepository _anmeldelseRepository = anmeldelseRepository;
         private readonly IMapper _mapper = mapper;
 
+        //todo check if an api call can have an optional header data (for user id)
         [HttpGet("FilmAnmeldelser/{filmId}/{userId}")]
         public IActionResult GetFilmAnmeldelser(int filmId, int userId = 0)
         {

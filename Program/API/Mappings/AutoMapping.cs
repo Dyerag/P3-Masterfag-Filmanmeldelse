@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using FilmAnmeldelseApi.Dto;
-using FilmAnmeldelseApi.Models;
+using Api.Dto;
+using Api.Models;
 
-namespace FilmAnmeldelseApi.Aid
+namespace Api.Mappings
 {
     /// <summary>
     /// kortlægger Modellerne til deres tilsvarende DTO. DTO'en er den data der returneres af API'en
@@ -13,6 +13,9 @@ namespace FilmAnmeldelseApi.Aid
         {
             CreateMap<Film, FilmDto>();
             CreateMap<Anmeldelse, AnmeldelseDto>();
+
         }
+
     }
+
 }

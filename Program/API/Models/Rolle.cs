@@ -1,4 +1,4 @@
-﻿namespace FilmAnmeldelseApi.Models;
+﻿namespace Api.Models;
 
 /*Lavet få ændringer siden skabelsen via scaffolding, så at det vil være tættere
  * på hvordan jeg ville havde skrevet det hvis jeg arbejdet med det

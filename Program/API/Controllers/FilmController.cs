@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
-using FilmAnmeldelseApi.Dto;
-using FilmAnmeldelseApi.Interfaces;
+using Api.Mappings;
+using Api.Dto;
+using Api.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FilmAnmeldelseApi.Controllers
+namespace Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
@@ -21,7 +22,8 @@ namespace FilmAnmeldelseApi.Controllers
             if (!_filmRepository.FilmExists(filmId))
                 return NotFound();
 
-            var film = _mapper.Map<FilmDto>(_filmRepository.GetFilm(filmId));
+            //var film = _mapper.Map<FilmDto>(_filmRepository.GetFilm(filmId));
+            var film = Map.ToDto(_filmRepository.GetFilm(filmId));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
