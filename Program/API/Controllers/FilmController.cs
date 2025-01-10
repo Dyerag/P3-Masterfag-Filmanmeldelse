@@ -1,18 +1,17 @@
-﻿using AutoMapper;
-using Api.Mappings;
+﻿using Api.Mappings;
 using Api.Dto;
 using Api.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Api.Models;
 
 namespace Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class FilmController(IFilmRepository filmRepository, IMapper mapper, IAnmeldelseRepository anmeldelserRepository) : ControllerBase
+    public class FilmController(IFilmRepository filmRepository, IAnmeldelseRepository anmeldelserRepository) : ControllerBase
     {
         //IFilmRepository er scoped til FilmRepository
         private readonly IFilmRepository _filmRepository = filmRepository;
-        private readonly IMapper _mapper = mapper;
         // IAnmeldelserRepository bruges til at sortere rækkefølgen af film der er søgt gennem titlen
         private readonly IAnmeldelseRepository _anmeldelseRepository = anmeldelserRepository;
 
@@ -20,11 +19,10 @@ namespace Api.Controllers
         public IActionResult GetFilm(int filmId)
         {
             if (!_filmRepository.FilmExists(filmId))
-                return NotFound();
+                return NotFound("Filmen findes ikke");
 
-            //var film = _mapper.Map<FilmDto>(_filmRepository.GetFilm(filmId));
             var film = Map.ToDto(_filmRepository.GetFilm(filmId));
-
+            
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -34,8 +32,8 @@ namespace Api.Controllers
         [HttpGet("RandomFilms/{amount}")]
         public IActionResult GetRandomFilms(int amount)
         {
-            var films = _mapper.Map<List<FilmDto>>(_filmRepository.GetRandomFilms(amount));
-
+            var films = Map.ToDto(_filmRepository.GetRandomFilms(amount));
+            
             if (!ModelState.IsValid)
                 return BadRequest();
 
@@ -45,10 +43,10 @@ namespace Api.Controllers
         [HttpGet("FindTitle/{title}")]
         public IActionResult GetFilmsByTitle(string title)
         {
-            var films = _mapper.Map<List<FilmDto>>(_filmRepository.GetFilmsByTitle(title));
+            var films = Map.ToDto(_filmRepository.GetFilmsByTitle(title));
 
             if (films.Count == 0)
-                return NotFound();
+                return NotFound("Der er ingen film der passer titlen");
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -61,7 +59,7 @@ namespace Api.Controllers
         [HttpGet("{genre}")]
         public IActionResult GetFilmsByGenre(string genre)
         {
-            var films = _mapper.Map<List<FilmDto>>(_filmRepository.GetFilmsByGenre(genre));
+            var films = Map.ToDto(_filmRepository.GetFilmsByGenre(genre));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

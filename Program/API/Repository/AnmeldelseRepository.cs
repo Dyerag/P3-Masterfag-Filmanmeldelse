@@ -32,5 +32,10 @@ namespace Api.Repository
         {
             return _context.Anmeldelses.Where(a => a.FilmId == id).ToList();
         }
+
+        public bool AnmeldelserExists(int id)
+        {
+
+        }
     }
 }

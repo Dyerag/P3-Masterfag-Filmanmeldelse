@@ -19,5 +19,7 @@ namespace Api.Mappings
             Spilletid = film.Spilletid,
             Gennemsnitsanmeldelse = film.Gennemsnitsanmeldelse
         };
+
+        public static List<FilmDto> ToDto(IEnumerable<Film> film) => (List<FilmDto>)film.Select(ToDto);
     }
 }

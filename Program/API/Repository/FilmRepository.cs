@@ -58,7 +58,7 @@ namespace Api.Repository
         /// <returns></returns>
         public ICollection<Film> GetFilmsByTitle(string title)
         {
-            return _context.Films.Where(f => EF.Functions.Like(f.Titel, "%"+title+"%")).ToList();
+            return _context.Films.Where(f => EF.Functions.Like(f.Titel, "%" + title + "%")).ToList();
         }
     }
 }
