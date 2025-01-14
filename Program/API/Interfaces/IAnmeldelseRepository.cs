@@ -12,7 +12,7 @@ namespace Api.Interfaces
         public ICollection<Anmeldelse> GetFilmAnmeldelser(int filmId);
 
         /// <summary>
-        /// Returnerer en liste af anmedelser tilhørende en bruger
+        /// Returnerer en liste af anmeldelser tilhørende brugeren
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

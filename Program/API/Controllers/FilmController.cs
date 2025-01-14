@@ -1,12 +1,10 @@
 ﻿using Api.Mappings;
-using Api.Dto;
 using Api.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Api.Models;
 
 namespace Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("Api/[controller]")]
     [ApiController]
     public class FilmController(IFilmRepository filmRepository, IAnmeldelseRepository anmeldelserRepository) : ControllerBase
     {
@@ -56,7 +54,7 @@ namespace Api.Controllers
             return Ok(films.OrderByDescending(f => f.Gennemsnitsanmeldelse).ThenByDescending(f => _anmeldelseRepository.GetFilmAnmeldelser(f.Id).Count));
         }
 
-        [HttpGet("{genre}")]
+        [HttpGet("Genre/{genre}")]
         public IActionResult GetFilmsByGenre(string genre)
         {
             var films = Map.ToDto(_filmRepository.GetFilmsByGenre(genre));
@@ -66,5 +64,7 @@ namespace Api.Controllers
 
             return Ok(films);
         }
+
+        //Todo Make a Method to calculate the average rating of movies
     }
 }

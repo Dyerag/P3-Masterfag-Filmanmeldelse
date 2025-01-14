@@ -4,10 +4,15 @@ using Api.Models;
 namespace Api.Mappings
 {
     /// <summary>
-    /// Returnerer en Dto der er kortlagt efter parameteren
+    /// Har kortlagt Model objekterne og deres Dto.
     /// </summary>
     public static partial class Map
     {
+        /// <summary>
+        /// Skaber en FilmDto
+        /// </summary>
+        /// <param name="film"></param>
+        /// <returns>Den skabte FilmDto</returns>
         public static FilmDto ToDto(Film film) => new FilmDto
         {
             Id = film.Id,
@@ -20,6 +25,19 @@ namespace Api.Mappings
             Gennemsnitsanmeldelse = film.Gennemsnitsanmeldelse
         };
 
-        public static List<FilmDto> ToDto(IEnumerable<Film> film) => (List<FilmDto>)film.Select(ToDto);
+        /// <summary>
+        /// Skaber en liste af FilmDto'er
+        /// </summary>
+        /// <param name="film"></param>
+        /// <returns>Listen af FilmDto'er</returns>
+        public static List<FilmDto> ToDto(IEnumerable<Film> film)
+        {
+            List<FilmDto> dtoListe = new();
+
+            foreach (var i in film)
+                dtoListe.Add(ToDto(i));
+
+            return dtoListe;
+        }
     }
 }

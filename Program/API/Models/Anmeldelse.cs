@@ -21,4 +21,3 @@ public class Anmeldelse
     public Film Film { get; set; } = null!;
     public ICollection<Kommentar> Kommentars { get; set; } = [];
 }
-//todo make a controller for Anmeldelser
