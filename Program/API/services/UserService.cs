@@ -13,6 +13,7 @@ namespace WebApp.services
             _repository = repository;
         }
 
+        //TODO kunne barer havde været del af controlleren
         /// <summary>
         /// Tilføjer en ny bruger, hvis brugernavnet ikke allerede findes.
         /// </summary>
@@ -20,19 +21,23 @@ namespace WebApp.services
         /// <returns></returns>
         public async Task<User> RegisterUserAsync(User user)
         {
+            //TODO Alt tjekket gør er at kaste en exception hvis navnet allerede bruges
             // Tjek om brugernavnet allerede findes
             if (await _repository.UserExistsAsync(user.Brugernavn))
             {
                 throw new Exception("Brugernavnet findes allerede.");
             }
-
+            
+            //TODO Selv hvis brugerenavnet er taget, giver du alligevel en oprettelsesdato. Unødvendigt, siden databasen selv giver en oprettelses dato hvis ingen er angivet
             // Sæt oprettelsesdato
             user.Oprettelsesdato = DateOnly.FromDateTime(DateTime.Now);
 
+            //TODO Selv hvis brugernavnet er i brug, vil der prøves at tilføje brugeren til databasen
             // Tilføj brugeren til databasen
             return await _repository.AddUserAsync(user);
         }
 
+        //TODO Det hele burde havde været en del af controlleren
         /// <summary>
         /// Validerer loginoplysninger og returnerer brugeren, hvis de er korrekte.
         /// </summary>
@@ -52,6 +57,7 @@ namespace WebApp.services
             return user;
         }
 
+        //TODO Burde ligge i controlleren
         /// <summary>
         /// Søger efter brugere baseret på brugernavn.
         /// </summary>

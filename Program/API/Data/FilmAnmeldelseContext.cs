@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.model;
 
 namespace FilmAnmeldelseApi.Data;
-
+//TODO Hvorfor er der blevet lavet et nyt scaffolding af databasen
 public partial class FilmAnmeldelseContext : DbContext
 {
     public FilmAnmeldelseContext()

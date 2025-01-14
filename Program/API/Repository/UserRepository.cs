@@ -23,6 +23,7 @@ namespace FilmAnmeldelseApi.Repository
             return user;
         }
 
+        // TODO Det er ikke validering, den henter data. Barer et navne problem
         /// <summary>
         /// Validerer brugerens loginoplysninger.
         /// </summary>

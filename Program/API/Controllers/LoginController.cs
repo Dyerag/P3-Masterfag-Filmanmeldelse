@@ -20,10 +20,12 @@ namespace FilmAnmeldelseApi.Controllers
         [HttpGet("User")]
         public IActionResult GetUser()
         {
+            //TODO Context bruges kun af filerne i Repository folderen
             using (var context = new FilmAnmeldelseContext())
             {
                 var users = context.Users.ToList();
-
+                
+                //TODO Hvorfor returneres alle brugere? Og hvorfor er det ikke en Dto?
                 return Ok(users);
             }
         }
@@ -49,6 +51,7 @@ namespace FilmAnmeldelseApi.Controllers
                 // Opret bruger via service
                 var createdUser = await _userService.RegisterUserAsync(newUser);
 
+                //TODO Hvorfor returneres der en bruger?
                 // Returner succes med brugeren (uden adgangskode for sikkerhed)
                 return Ok(new
                 {
@@ -76,6 +79,7 @@ namespace FilmAnmeldelseApi.Controllers
                 // Valider login-oplysninger via UserService
                 var user = await _userService.LoginAsync(dto.Brugernavn, dto.Adgangskode);
 
+                //TODO hvad med resten af brugerdata
                 // Returner succes med brugerdata
                 return Ok(new
                 {

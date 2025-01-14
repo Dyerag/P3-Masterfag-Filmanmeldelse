@@ -13,6 +13,7 @@ namespace FilmAnmeldelseApi.services
             _filmRepository = filmRepository;
         }
 
+        //TODO burde ligge i FilmController
         public List<SearchFilmDto> SearchFilmsByTitle(string title)
         {
             var films = _filmRepository.GetFilmsByTitle(title);

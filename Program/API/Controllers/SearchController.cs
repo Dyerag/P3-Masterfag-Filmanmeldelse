@@ -17,6 +17,7 @@ namespace FilmAnmeldelseApi.Controllers
             _userService = userService;
         }
 
+        //TODO det her findes allerede
         /// <summary>
         /// Søger efter film baseret på titel.
         /// </summary>
@@ -33,6 +34,7 @@ namespace FilmAnmeldelseApi.Controllers
             return Ok(films);
         }
 
+        //TODO Dette kald burde være i en controller dedikeret til User 
         /// <summary>
         /// Søger efter brugere baseret på brugernavn.
         /// </summary>
@@ -43,6 +45,7 @@ namespace FilmAnmeldelseApi.Controllers
         {
             var users = _userService.SearchUsersByUsername(username);
 
+            //TODO Hvorfor bruger du både count og null?
             if (users == null || users.Count == 0)
                 return NotFound("Ingen brugere fundet med det angivne brugernavn.");
 
