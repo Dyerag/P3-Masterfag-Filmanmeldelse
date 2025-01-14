@@ -1,4 +1,4 @@
-﻿namespace FilmAnmeldelseApi.Models;
+﻿namespace Api.Models;
 
 /*Lavet få ændringer siden skabelsen via scaffolding, så at det vil være tættere
  * på hvordan jeg ville havde skrevet det hvis jeg arbejdet med det
@@ -13,11 +13,11 @@ public class Film
     public int Aldersgrænse { get; set; }
     public DateOnly Udgivelsesdato { get; set; }
     public TimeOnly Spilletid { get; set; }
-    //Beregnes her i programmet, og gemmes på databasen.
+    //Beregnes her i programmet når en ny anmeldelse laves, og gemmes på databasen.
     public decimal Gennemsnitsanmeldelse { get; set; }
 
     //Alt herunder er database relation
-    public ICollection<Anmeldelser> Anmeldelsers { get; set; }
+    public ICollection<Anmeldelse> Anmeldelses { get; set; }
     public ICollection<Rolle> Rolles { get; set; }
     public ICollection<FilmDirektør> FilmDirektørs { get; set; }
     public ICollection<FilmForfatter> FilmForfatters { get; set; }

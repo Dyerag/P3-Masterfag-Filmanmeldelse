@@ -1,4 +1,4 @@
-﻿namespace FilmAnmeldelseApi.Dto
+﻿namespace Api.Dto
 {
     public class FilmDto
     {

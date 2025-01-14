@@ -1,9 +1,9 @@
-﻿namespace FilmAnmeldelseApi.Models;
+﻿namespace Api.Models;
 
 /*Lavet få ændringer siden skabelsen via scaffolding, så at det vil være tættere
  * på hvordan jeg ville havde skrevet det hvis jeg arbejdet med det
  * fra grunden up. fjernet partial, virtual og new.*/
-public class Anmeldelser
+public class Anmeldelse
 {
     //Id'en til den film anmeldelsen tilhører
     public int FilmId { get; set; }
@@ -21,4 +21,3 @@ public class Anmeldelser
     public Film Film { get; set; } = null!;
     public ICollection<Kommentar> Kommentars { get; set; } = [];
 }
-//todo make a DTO, interface, repository and controller for Anmeldelser

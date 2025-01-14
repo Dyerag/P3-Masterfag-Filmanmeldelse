@@ -1,9 +1,9 @@
-﻿using FilmAnmeldelseApi.Data;
-using FilmAnmeldelseApi.Interfaces;
-using FilmAnmeldelseApi.Models;
+﻿using Api.Data;
+using Api.Interfaces;
+using Api.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FilmAnmeldelseApi.Repository
+namespace Api.Repository
 {
     public class FilmRepository : IFilmRepository
     {
@@ -22,7 +22,7 @@ namespace FilmAnmeldelseApi.Repository
         }
 
         /// <summary>
-        /// Henter filmen ud fra filmens ID.
+        /// Henter en film ud fra dens ID.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace FilmAnmeldelseApi.Repository
         }
 
         /// <summary>
-        /// Generere en tilfældig liste af film ud fra den angivne størrelse.
+        /// Skaber en tilfældig liste af film ud fra den angivne størrelse.
         /// </summary>
         /// <param name="amount"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace FilmAnmeldelseApi.Repository
         }
 
         /// <summary>
-        /// Henter Alle Film Tilhørende den valgte genre
+        /// Henter alle film tilhørende den valgte genre
         /// </summary>
         /// <param name="genre"></param>
         /// <returns></returns>
@@ -52,13 +52,13 @@ namespace FilmAnmeldelseApi.Repository
         }
 
         /// <summary>
-        /// Henter alle film, hvis titel inkludere hvad der søges efter et sted i titlen. Er case insensitiv
+        /// Henter alle film, hvis titel inkludere hvad der søges efter. Er case insensitiv
         /// </summary>
         /// <param name="title"></param>
         /// <returns></returns>
         public ICollection<Film> GetFilmsByTitle(string title)
         {
-            return _context.Films.Where(f => EF.Functions.Like(f.Titel, "%"+title+"%")).ToList();
+            return _context.Films.Where(f => EF.Functions.Like(f.Titel, "%" + title + "%")).ToList();
         }
     }
 }
