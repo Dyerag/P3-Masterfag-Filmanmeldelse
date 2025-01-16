@@ -29,8 +29,13 @@ namespace Api.Mappings
         {
             List<AnmeldelseDto> dtoListe = new();
 
-            foreach (var i in Anmeldelser)
+            Parallel.ForEach(Anmeldelser, i =>
+            {
                 dtoListe.Add(ToDto(i));
+            });
+
+            //foreach (var i in Anmeldelser)
+            //    dtoListe.Add(ToDto(i));
 
             return dtoListe;
         }
