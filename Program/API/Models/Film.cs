@@ -1,22 +1,21 @@
 ﻿namespace Api.Models;
 
-/*Lavet få ændringer siden skabelsen via scaffolding, så at det vil være tættere
- * på hvordan jeg ville havde skrevet det hvis jeg arbejdet med det
- * fra grunden up. fjernet partial, virtual og new.*/
+/* Made som changes since scaffolding, to make it closer to how I would have written
+ * it, if i had made it from the ground up. Removed partial, virtual and new.*/
 public class Film
 {
     public int Id { get; set; }
     public string Titel { get; set; } = null!;
-    //Der er kun 1 plakat per. film, og den er af datatypen image i databasen.
+    // There's only one poster(Plakat) per film, and in the database, it's type is image.
     public byte[] Plakat { get; set; } = null!;
     public string Synopse { get; set; } = null!;
     public int Aldersgrænse { get; set; }
     public DateOnly Udgivelsesdato { get; set; }
     public TimeOnly Spilletid { get; set; }
-    //Beregnes her i programmet når en ny anmeldelse laves, og gemmes på databasen.
+    // Calculates the Average rating in the Api, when a new review is written.
     public decimal Gennemsnitsanmeldelse { get; set; }
 
-    //Alt herunder er database relation
+    // Past this point is just database relations.
     public ICollection<Anmeldelse> Anmeldelses { get; set; }
     public ICollection<Rolle> Rolles { get; set; }
     public ICollection<FilmDirektør> FilmDirektørs { get; set; }

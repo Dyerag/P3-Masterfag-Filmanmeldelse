@@ -6,10 +6,10 @@ namespace Api.Mappings
     public partial class Map
     {
         /// <summary>
-        /// Creates an AnmeldelseDto (ReviewDto).
+        /// Creates a dto for Anmeldelse.
         /// </summary>
         /// <param name="anmeldelse"></param>
-        /// <returns>The newly created Dto</returns>
+        /// <returns>The newly created dto.</returns>
         public static AnmeldelseDto ToDto(Anmeldelse anmeldelse) => new AnmeldelseDto
         {
             FilmId = anmeldelse.FilmId,
@@ -21,20 +21,20 @@ namespace Api.Mappings
         };
 
         /// <summary>
-        /// Creates a list of AnmeldelseDto
+        /// Creates a list of DTOs for Anmeldelse.
         /// </summary>
-        /// <param name="Anmeldelser"></param>
-        /// <returns>Listen af AnmeldelsesDto'er</returns>
-        public static List<AnmeldelseDto> ToDto(IEnumerable<Anmeldelse> Anmeldelser)
+        /// <param name="anmeldelser"></param>
+        /// <returns>The list of DTOs.</returns>
+        public static List<AnmeldelseDto> ToDto(IEnumerable<Anmeldelse> anmeldelser)
         {
-            List<AnmeldelseDto> dtoListe = new();
+            List<AnmeldelseDto> dtoList = new();
 
-            Parallel.ForEach(Anmeldelser, i =>
+            Parallel.ForEach(anmeldelser, i =>
             {
-                dtoListe.Add(ToDto(i));
+                dtoList.Add(ToDto(i));
             });
 
-            return dtoListe;
+            return dtoList;
         }
     }
 }

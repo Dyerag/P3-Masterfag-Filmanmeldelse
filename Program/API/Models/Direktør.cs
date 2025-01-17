@@ -1,14 +1,13 @@
 ﻿namespace Api.Models;
 
-/*Lavet få ændringer siden skabelsen via scaffolding, så at det vil være tættere
- * på hvordan jeg ville havde skrevet det hvis jeg arbejdet med det
- * fra grunden up. fjernet partial, virtual og new.*/
+/* Made som changes since scaffolding, to make it closer to how I would have written
+ * it, if i had made it from the ground up. Removed partial, virtual and new.*/
 public class Direktør
 {
     public int Id { get; set; }
-    public string Fuldenavn { get; set; } = null!; //null! betyder "Not Nullable" i databasen
+    public string Fuldenavn { get; set; } = null!; //null! means "Not Nullable" in the database
 
-    //Alt herunder er database relation
+    //Past this point is just database relations
     public ICollection<FilmDirektør> FilmDirektørs { get; set; }
 }
 //todo make a DTO, interface, repository and controller for Direktør

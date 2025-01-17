@@ -1,23 +1,22 @@
 ﻿namespace Api.Models;
 
-/*Lavet få ændringer siden skabelsen via scaffolding, så at det vil være tættere
- * på hvordan jeg ville havde skrevet det hvis jeg arbejdet med det
- * fra grunden up. fjernet partial, virtual og new.*/
+/* Made som changes since scaffolding, to make it closer to how I would have written
+ * it, if i had made it from the ground up. Removed partial, virtual and new.*/
 public class Anmeldelse
 {
-    //Id'en til den film anmeldelsen tilhører
+    //The ID to the film this review belongs to.
     public int FilmId { get; set; }
-    //Anmelderens brugerId
+    //The reviewers userID.
     public int AnmelderId { get; set; }
     public string? Titel { get; set; }
     public string? Begrundelse { get; set; }
-    //1 - 5 Stjerner
+    //1 - 5 Stars.
     public int Bedømmelse { get; set; }
-    //hvornår anmeldelsen blev givet. fås automatisk
+    // The date the review was made. Automaticaly given by the database upon storing.
     public DateOnly Anmeldsdato { get; set; }
 
-    //Alt herunder er database relation
-    public User Anmelder { get; set; } = null!; //null! betyder not nullable i databasen
+    // Everything past this point, is database relations.
+    public User Anmelder { get; set; } = null!; //null! means not nullable in Database.
     public Film Film { get; set; } = null!;
     public ICollection<Kommentar> Kommentars { get; set; } = [];
 }

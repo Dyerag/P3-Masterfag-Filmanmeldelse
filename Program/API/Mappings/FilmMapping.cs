@@ -9,10 +9,10 @@ namespace Api.Mappings
     public static partial class Map
     {
         /// <summary>
-        /// Skaber en FilmDto
+        /// Creates a dto for a film.
         /// </summary>
         /// <param name="film"></param>
-        /// <returns>Den skabte FilmDto</returns>
+        /// <returns>The FilmDto.</returns>
         public static FilmDto ToDto(Film film) => new FilmDto
         {
             Id = film.Id,
@@ -26,20 +26,20 @@ namespace Api.Mappings
         };
 
         /// <summary>
-        /// Skaber en liste af FilmDto'er
+        /// Creates a list of DTOs for film.
         /// </summary>
         /// <param name="film"></param>
-        /// <returns>Listen af FilmDto'er</returns>
+        /// <returns>The list of DTOs</returns>
         public static List<FilmDto> ToDto(IEnumerable<Film> film)
         {
-            List<FilmDto> dtoListe = new();
+            List<FilmDto> dtoList = new();
 
             Parallel.ForEach(film, i =>
             {
-                dtoListe.Add(ToDto(i));
+                dtoList.Add(ToDto(i));
             });
 
-            return dtoListe;
+            return dtoList;
         }
     }
 }
