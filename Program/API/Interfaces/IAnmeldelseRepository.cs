@@ -5,17 +5,17 @@ namespace Api.Interfaces
     public interface IAnmeldelseRepository
     {
         /// <summary>
-        /// Returnerer en liste af anmeldelser tilhørende en film
+        /// Fetches rviews from the database.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>A list of reviews given to the Film.</returns>
         public ICollection<Anmeldelse> GetFilmAnmeldelser(int filmId);
 
         /// <summary>
-        /// Returnerer en liste af anmeldelser tilhørende brugeren
+        /// Fetches rviews from the database.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>A list of reviews made by the user.</returns>
         public ICollection<Anmeldelse> GetUserAnmeldelser(int anmelderId);
     }
 }

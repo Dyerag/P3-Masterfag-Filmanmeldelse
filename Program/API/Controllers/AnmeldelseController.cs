@@ -11,11 +11,11 @@ namespace Api.Controllers
     {
         private readonly IAnmeldelseRepository _anmeldelseRepository = anmeldelseRepository;
         private readonly IFilmRepository _filmRepository = filmRepository;
-        // userId er ID'en på den bruger som er logged in, og er valgfri, fordi det er muligt at bruge programmet uden at logge in.
-        // FilmId er Den film hvis anmeldelser der hentes
+        // userId is the ID of the user currently loggedin. It's optional, because it's possible to use the program without being loggedin.
+        // FilmId is the whoms reviews are being fetched.
         // todo Test if the optional parameter works in the actual program, as swagger does not support optional parameters
         [HttpGet("Film/{filmId}/User/{userId?}")]
-        public IActionResult GetFilmAnmeldelser(int filmId, int? userId = null) // userId skal ha' en default value, for at håndterer hvis den ikke angives
+        public IActionResult GetFilmAnmeldelser(int filmId, int? userId = null) // userId needs a default value, to handle when one isn't given.
         {
             if (!_filmRepository.FilmExists(filmId))
                 return NotFound("Kan ikke give Anmeldelser til en film der ikke findes");
@@ -29,9 +29,9 @@ namespace Api.Controllers
                 return NotFound("Ingen anmeldelser");
 
             //todo Test if the ordering actually works
-            // Tjekker om der er angivet et bruger id, og om nogen af objekterne i listen indeholder id'en
+            // Checks if a userid is given, and if the reviewerId of one of reviews is the same as the userId.
             if (userId != null && anmeldelser.Any(a => a.AnmelderId == userId))
-                // "OrderBy" sortere her listen som en bool, hvor true står først
+                // "OrderBy" Sorts the list as a bool, with the results that return as true place first.
                 return Ok(anmeldelser.OrderByDescending(a => a.AnmelderId == userId));
             else
                 return Ok(anmeldelser);
@@ -41,15 +41,15 @@ namespace Api.Controllers
         [HttpGet("User/{userId}")]
         public IActionResult GetUserAnmeldelser(int userId)
         {
-            var anmeldelser = Map.ToDto(_anmeldelseRepository.GetUserAnmeldelser(userId).OrderByDescending(a => a.Anmeldsdato));
+            var reviews = Map.ToDto(_anmeldelseRepository.GetUserAnmeldelser(userId).OrderByDescending(a => a.Anmeldsdato));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (anmeldelser.Count == 0)
+            if (reviews.Count == 0)
                 return NotFound("Du har ikke givet nogen film en anmeldelse.");
-
-            return Ok(anmeldelser);
+            
+            return Ok(reviews);
         }
     }
 }

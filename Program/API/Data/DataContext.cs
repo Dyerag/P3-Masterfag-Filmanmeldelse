@@ -3,15 +3,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Data
 {
-    // Datacontext kommunikere med databasen ved brug af NuGet pakkerne EF Core: Design, Sqlserver og tools
-    // Contexten blev lavet med "database first approach". Derfor blev scaffolding brugt.
+    // Datacontext communicates with the database by using the NuGet packages EF Core: Design, Sqlserver og tools.
+    // Context was mad using a "database first approach", and the scaffolded.
+    /* There was not enought foresight when designing the database,
+     * to also write it in english along with the other programs, and can't be bothered to change it right now. */
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
 
-        // Scaffolding tilføjede et "s" til alle DbSet properties, og den standard bliver fulgt i de manuelt skabet DbSet
+        // Scaffolding added an "s" to all DbSet properties, and that standard will be followed in the manuel made DbSet.
         public DbSet<Anmeldelse> Anmeldelses { get; set; }
 
         public DbSet<Direktør> Direktørs { get; set; }
@@ -36,9 +38,9 @@ namespace Api.Data
 
         public DbSet<SkuespillerRolle> SkuespillerRolles { get; set; }
 
-        /* På nær SkuespillerRolle, blev ingen join tabel lavet af scaffolding.
-         * Derfor er de og deres fluent API levet i egen hånd deres.
-         * Og Den fluent API der lavede dem i databasen uden en model, er fjernet*/
+        /* With the exception of SkuespillerRolle, none of the other join tables were made a DBset property.
+         * Therefore, along with their fluent API, they were made by hand.
+         * The fluent API that made them in the database without a model, was removed.*/
         public DbSet<FilmDirektør> FilmDirektørs { get; set; }
 
         public DbSet<FilmForfatter> FilmForfatters { get; set; }
@@ -233,7 +235,7 @@ namespace Api.Data
                     .HasConstraintName("FK__SkuespillerRolle__5FB337D6");
             });
 
-            //Alt herfra er lavet i hånden
+            // From this point onwards, everything is manually made.
             modelBuilder.Entity<FilmDirektør>(entity =>
             {
                 entity.HasKey(e => new { e.FilmId, e.DirektørId });

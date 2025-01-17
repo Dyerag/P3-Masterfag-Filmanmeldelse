@@ -6,10 +6,10 @@ namespace Api.Mappings
     public partial class Map
     {
         /// <summary>
-        /// Skaber en AnmeldelseDto
+        /// Creates an AnmeldelseDto (ReviewDto).
         /// </summary>
         /// <param name="anmeldelse"></param>
-        /// <returns>Den skabte AnmeldelseDto</returns>
+        /// <returns>The newly created Dto</returns>
         public static AnmeldelseDto ToDto(Anmeldelse anmeldelse) => new AnmeldelseDto
         {
             FilmId = anmeldelse.FilmId,
@@ -21,7 +21,7 @@ namespace Api.Mappings
         };
 
         /// <summary>
-        /// Skaber en liste af AnmeldelsesDto'er
+        /// Creates a list of AnmeldelseDto
         /// </summary>
         /// <param name="Anmeldelser"></param>
         /// <returns>Listen af AnmeldelsesDto'er</returns>
@@ -33,9 +33,6 @@ namespace Api.Mappings
             {
                 dtoListe.Add(ToDto(i));
             });
-
-            //foreach (var i in Anmeldelser)
-            //    dtoListe.Add(ToDto(i));
 
             return dtoListe;
         }

@@ -3,13 +3,13 @@
     public class AnmeldelseDto
     {
         public int FilmId { get; set; }
-        //Anmelderens brugerId
+        // Reviewers userId.
         public int AnmelderId { get; set; }
         public string? Titel { get; set; }
         public string? Begrundelse { get; set; }
-        //1 - 5 Stjerner
+        // 1 - 5 Stars.
         public int Bedømmelse { get; set; }
-        //hvornår anmeldelsen blev givet. fås automatisk
+        // When the review was made. Is given automaticaly by the database.
         public DateOnly Anmeldsdato { get; set; }
     }
 }

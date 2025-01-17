@@ -30,25 +30,16 @@ namespace Api.Mappings
         /// </summary>
         /// <param name="film"></param>
         /// <returns>Listen af FilmDto'er</returns>
-        public static async Task<List<FilmDto>> ToDto(IEnumerable<Film> film)
+        public static List<FilmDto> ToDto(IEnumerable<Film> film)
         {
-            //List<FilmDto> dtoListe = new();
+            List<FilmDto> dtoListe = new();
 
-            //Parallel.ForEach(film, i =>
-            //{
-            //    dtoListe.Add(ToDto(i));
-            //});
-
-            List<Task<FilmDto>> dtoList = new();
-
-            foreach (var i in film)
+            Parallel.ForEach(film, i =>
             {
-                dtoList.Add(Task.Run(() => ToDto(i)));
-                //dtoListe.Add(task);
-            }
+                dtoListe.Add(ToDto(i));
+            });
 
-            var result = await Task.WhenAll(dtoList);
-            return result.ToList();
+            return dtoListe;
         }
     }
 }

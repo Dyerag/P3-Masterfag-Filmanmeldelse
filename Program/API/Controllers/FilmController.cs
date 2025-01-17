@@ -8,9 +8,9 @@ namespace Api.Controllers
     [ApiController]
     public class FilmController(IFilmRepository filmRepository, IAnmeldelseRepository anmeldelserRepository) : ControllerBase
     {
-        //IFilmRepository er scoped til FilmRepository
+        //IFilmRepository is scopde to FilmRepository.
         private readonly IFilmRepository _filmRepository = filmRepository;
-        // IAnmeldelserRepository bruges til at sortere rækkefølgen af film der er søgt gennem titlen
+        // IAnmeldelserRepository is used to sort the order of films searched by title.
         private readonly IAnmeldelseRepository _anmeldelseRepository = anmeldelserRepository;
 
         [HttpGet("FindID/{filmId}")]
@@ -50,7 +50,7 @@ namespace Api.Controllers
                 return BadRequest(ModelState);
 
             //todo Test that GetFilmsByTitle returns a list ordered by, in descending order, GennemsnitsAnmeldelse, and then the amount of reviews.
-            // Den returnerede liste er sorteret efter den film med højst gennemsnit først, og derefter antallet af anmeldelser
+            // The returned list is sorted by highest average rating first, and then amount of reviews.
             return Ok(films.OrderByDescending(f => f.Gennemsnitsanmeldelse).ThenByDescending(f => _anmeldelseRepository.GetFilmAnmeldelser(f.Id).Count));
         }
 
@@ -65,6 +65,6 @@ namespace Api.Controllers
             return Ok(films);
         }
 
-        //Todo Make a Method to calculate the average rating of movies
+        //Todo Make a Method to calculate the average rating of all a movies reviews
     }
 }

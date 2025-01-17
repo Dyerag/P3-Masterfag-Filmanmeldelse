@@ -6,38 +6,38 @@ namespace Api.Interfaces
     public interface IFilmRepository
     {
         /// <summary>
-        /// Skaber en tilfældig liste af film ud fra den angivne størrelse.
+        /// Grabs random Films from the database.
         /// </summary>
         /// <param name="amount"></param>
-        /// <returns></returns>
+        /// <returns>A list containing the chosen amount of films.</returns>
         ICollection<Film> GetRandomFilms(int amount);
         
         /// <summary>
-        /// Henter en film ud fra dens ID.
+        /// Fetches a single film by its ID from the database.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>The fetched film, otherwise null.</returns>
         Film GetFilm(int id);
 
         /// <summary>
-        /// Henter alle film tilhørende den valgte genre
+        /// Finds all the movies belonging to a specific genre in the database.
         /// </summary>
         /// <param name="genre"></param>
-        /// <returns></returns>
+        /// <returns>Every film Found.</returns>
         ICollection<Film> GetFilmsByGenre(string genre);
 
         /// <summary>
-        /// Henter alle film, hvis titel inkludere hvad der søges efter. Er case insensitiv
+        /// Searches the database for every film whoms title contains the parameter value.
         /// </summary>
         /// <param name="title"></param>
-        /// <returns></returns>
+        /// <returns>A list of found films.</returns>
         ICollection<Film> GetFilmsByTitle(string title);
         
         /// <summary>
-        /// Tjekker om filmen findes.
+        /// Checks if the film exists in the database.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>True if it exists, otherwise False.</returns>
         bool FilmExists(int id);
     }
 }
